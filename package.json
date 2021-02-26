@@ -1,0 +1,19 @@
+{
+  "name": "auheal",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/master-kot/auheal.git"
+  },
+  "author": "YBemov <yaroslav.bemov@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/master-kot/auheal/issues"
+  },
+  "homepage": "https://github.com/master-kot/auheal#readme"
+}
