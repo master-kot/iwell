@@ -1,1 +1,0 @@
-(()=>{"use strict";const t=new class{constructor(t){this.title=t,this.date=new Date}toString(){return JSON.stringify({title:this.title,date:this.date.toJSON()})}}("Hello, world!");console.log(`This is App ${t.toString()}`)})();
