@@ -1,13 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="main.bundle.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <link rel="stylesheet" href="./css/main.css">
+
+    <script src="./js/main.js"></script>
+    <title>Document</title>
 </head>
+
 <body>
-
-<h1>Hello, world!</h1>
-
+    <!-- navbar -->
+    <nav class="navbar">
+        <a class="navbar__logo" href="/">
+            <img src="./logo.svg" alt="logo">
+        </a>
+        <button class="navbar__toggle"></button>
+        <div class="navbar__collapse">
+            <ul class="navbar__list">
+                <li class="navbar__item">
+                    <a href="#" class="navbar__link">Тренировки</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#" class="navbar__link">Тарифы</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#" class="navbar__link">Расписание</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="#" class="navbar__link">Присоедениться</a>
+                </li>
+            </ul>
+        </div>
+        <button class="btn navbar__account">Личный кабинет</button>
+    </nav>
+    <!-- header block -->
+    <div class="block1">
+        <p class="block1__p1">GOFIT - ЭТО ТВОЙ ФИТНЕС КЛУБ</p>
+        <p class="block1__p2">Бережет твое время на поиски идеального тренера</p>
+        <button class="btn block1_btn">Посмотреть занятия</button>
+    </div>
+    <!-- advantage -->
+    <div class="advantage">
+        <h2 class="advantage__head">ПРЕИМУЩЕСТВА ЕДИНОГО АБОНЕМЕНТА С GOFIT</h2>
+        <!-- cards -->
+        <div class="advantage__cards">
+            <!-- card -->
+            <div class="advantage__card">
+                <h3 class="advantage__card-head">экономия времени</h3>
+                <p class="advantage__card-text">Удобный поиск тренера, подходящего именно вам</p>
+            </div>
+            <!-- card -->
+            <div class="advantage__card">
+                <h3 class="advantage__card-head">Гибкий график</h3>
+                <p class="advantage__card-text">Тарифы позволяют "замораживать" тренировки</p>
+            </div>
+            <!-- card -->
+            <div class="advantage__card">
+                <h3 class="advantage__card-head">Безопасность</h3>
+                <p class="advantage__card-text">Инструктор позаботиться о правильности выполнения упражнений</p>
+            </div>
+            <!-- card -->
+            <div class="advantage__card">
+                <h3 class="advantage__card-head">простота использования</h3>
+                <p class="advantage__card-text">Вы всегда в паре кликов от идеального тренера</p>
+            </div>
+            <!-- card -->
+            <div class="advantage__card">
+                <h3 class="advantage__card-head">Доступность</h3>
+                <p class="advantage__card-text">Тарифы от 999 руб</p>
+            </div>
+            <!-- card -->
+            <div class="advantage__card">
+                <h3 class="advantage__card-head">Удобство</h3>
+                <p class="advantage__card-text">Занимайтесь не выходя из дома</p>
+            </div>
+        </div>
+    </div>
+    <!-- how it works -->
+    <div class="hiworks">
+        <h2 class="hiworks__head">
+            Как это работает?
+        </h2>
+        <div class="hiworks__container">
+            <div class="hiworks__img">
+                <img src="./img/pexels-mikhail-nilov-6707119 1.jpg" alt="hiworks">
+            </div>
+            <div class="hiworks__cards">
+                <div class="hiworks__card">
+                    <h3 class="hiworks__card-head">ОТКРОЙ ДЛЯ СЕБЯ ВЕЛНЕС</h3>
+                    <p class="hiworks__card-text">Воспользуйся единым абонементом GoFit по всей России</p>
+                </div>
+                <div class="hiworks__card">
+                    <h3 class="hiworks__card-head">ЗАРЕГИСТРИРУЙСЯ в личном кабинете</h3>
+                    <p class="hiworks__card-text">Там ты сможешь:<br>
+                        - записаться на тренировку<br>
+                        - выбрать и оплатить услугу<br>
+                        - посмотреть расписание<br>
+                        - пополнить счет</p>
+                </div>
+                <div class="hiworks__card">
+                    <h3 class="hiworks__card-head">ОТСЛЕЖИВАЙ СВОЙ ПРОГРЕСС</h3>
+                    <p class="hiworks__card-text">Планируй свою неделю и следи за результатами, и все это в одном
+                        приложении</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- achieve results -->
+    <div class="achieve-results">
+        <h2 class="achieve-results__head">Как мы будем добиваться результата</h2>
+        <div class="achieve-results__items">
+            <div class="achieve-results__item">
+                <img class="achieve-results__img" src="./img/fitness_center.svg" alt="fitness_center">
+                <h3 class="achieve-results__item-head">Lorem.</h3>
+                <p class="achieve-results__item-text">Lorem, ipsum dolor.</p>
+            </div>
+            <div class="achieve-results__item">
+                <img class="achieve-results__img" src="./img/restaurant.svg" alt="restaurant">
+                <h3 class="achieve-results__item-head">Lorem.</h3>
+                <p class="achieve-results__item-text">Lorem, ipsum dolor.</p>
+            </div>
+            <div class="achieve-results__item">
+                <img class="achieve-results__img" src="./img/spa.svg" alt="spa">
+                <h3 class="achieve-results__item-head">Lorem.</h3>
+                <p class="achieve-results__item-text">Lorem, ipsum dolor.</p>
+            </div>
+        </div>
+    </div>
+    <!-- find your way -->
+    <div class="fyway">
+        <h2 class="fyway__head">НАЙДИ СВОЕ НАПРАВЛЕНИЕ В GOFIT</h2>
+        <div class="fyway__cards">
+            <div class="fyway__card">
+                <a href="#" class="fyway__link">
+                    <img class="fyway__img" src="./img/Fitness_Brunette_girl_Workout_Hands_Legs_588828_5120x3413 2.jpg"
+                        alt="Fitness_Brunette_girl_Workout_Hands_Legs">
+                        <div class="fyway__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto, voluptas?</div>
+                    <div class="fyway__foot">
+                        <span class="fyway__type">Функциональный тренинг</span>
+                        <span class="fyway__icon">--></span>
+                    </div>
+                </a>
+            </div>
+            <div class="fyway__card">
+                <a href="#" class="fyway__link">
+                    <img class="fyway__img" src="./img/Fitness_Brunette_girl_Workout_Hands_Legs_588828_5120x3413 2.jpg"
+                        alt="Fitness_Brunette_girl_Workout_Hands_Legs">
+                        <div class="fyway__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto, voluptas?</div>
+                    <div class="fyway__foot">
+                        <span class="fyway__type">Функциональный тренинг</span>
+                        <span class="fyway__icon">--></span>
+                    </div>
+                </a>
+            </div>
+            <div class="fyway__card">
+                <a href="#" class="fyway__link">
+                    <img class="fyway__img" src="./img/Fitness_Brunette_girl_Workout_Hands_Legs_588828_5120x3413 2.jpg"
+                        alt="Fitness_Brunette_girl_Workout_Hands_Legs">
+                        <div class="fyway__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto, voluptas?</div>
+                    <div class="fyway__foot">
+                        <span class="fyway__type">Функциональный тренинг</span>
+                        <span class="fyway__icon">--></span>
+                    </div>
+                </a>
+            </div>
+            <div class="fyway__card">
+                <a href="#" class="fyway__link">
+                    <img class="fyway__img" src="./img/Fitness_Brunette_girl_Workout_Hands_Legs_588828_5120x3413 2.jpg"
+                        alt="Fitness_Brunette_girl_Workout_Hands_Legs">
+                        <div class="fyway__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto, voluptas?</div>
+                    <div class="fyway__foot">
+                        <span class="fyway__type">Функциональный тренинг</span>
+                        <span class="fyway__icon">--></span>
+                    </div>
+                </a>
+            </div>
+            <div class="fyway__card">
+                <a href="#" class="fyway__link">
+                    <img class="fyway__img" src="./img/Fitness_Brunette_girl_Workout_Hands_Legs_588828_5120x3413 2.jpg"
+                        alt="Fitness_Brunette_girl_Workout_Hands_Legs">
+                        <div class="fyway__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto, voluptas?</div>
+                    <div class="fyway__foot">
+                        <span class="fyway__type">Функциональный тренинг</span>
+                        <span class="fyway__icon">--></span>
+                    </div>
+                </a>
+            </div>
+            <div class="fyway__card">
+                <a href="#" class="fyway__link">
+                    <img class="fyway__img" src="./img/Fitness_Brunette_girl_Workout_Hands_Legs_588828_5120x3413 2.jpg"
+                        alt="Fitness_Brunette_girl_Workout_Hands_Legs">
+                        <div class="fyway__desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto, voluptas?</div>
+                    <div class="fyway__foot">
+                        <span class="fyway__type">Функциональный тренинг</span>
+                        <span class="fyway__icon">--></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- trainers -->
+    <div class="trainers">
+        <h2 class="trainers__head">Наши лучшие тренеры</h2>
+        <div class="trainers__cards">
+            <div class="trainers__card">
+                
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
