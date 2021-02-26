@@ -3,9 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 
 module.exports = {
+    context: path.resolve(__dirname, 'src/main/resources/src'),
     mode: 'development',
     entry: {
-        main: path.resolve(__dirname, 'src/main/resources/src/index.js')
+        main: './index.js'
     },
     output: {
         filename: '[name].[contenthash].js',
