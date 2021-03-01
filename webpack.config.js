@@ -9,7 +9,7 @@ const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plug
 
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
-const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`
+const filename = ext => isDev ? `[name].${ext}` : `[name].[contenthash].${ext}`
 const imgDir = isDev
     ? path.resolve(__dirname, 'src/main/resources/templates/img')
     : path.resolve(__dirname, 'src/main/resources/static/img')
@@ -19,7 +19,7 @@ const scriptPath = isDev
 
 const optimization = () => {
     const config = {
-        // удаление дублтрованного кода
+        // удаление дублирования кода
         splitChunks: {
             chunks: 'all'
         }
@@ -151,34 +151,6 @@ module.exports = {
                     options: babelOptions('@babel/preset-react')
                 }
             }
-            // {
-            //     test: /\.s[ac]ss$/,
-            //     use: [
-            //         {
-            //             loader: MiniCssExtractPlugin.loader,
-            //             options: {
-            //                 // hmr: isDev,
-            //                 // reloadAll: true
-            //             },
-            //         },
-            //         // 'style-loader',
-            //         'css-loader',
-            //         {
-            //             loader: "sass-loader",
-            //             // options: {
-            //             //     implementation: require("node-sass"),
-            //             // },
-            //         }
-            //         ]
-            // },
-            // {
-            //     test: /\.(png|jpg|svg|gif)$/,
-            //     loader: 'file-loader',
-            //     options: {
-            //         publicPath: 'src/main/resources/src/img',
-            //         outputPath: 'src/main/resources/static/img'
-            //     }
-            // }
         ]
     }
 }
