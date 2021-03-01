@@ -1,8 +1,6 @@
 package ru.auheal.entities;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -12,19 +10,20 @@ import java.util.List;
 
 import static javax.persistence.FetchType.EAGER;
 
-/**
- * Сущность Пользователь
- */
-@Entity
 @Getter
 @Setter
+@ToString
+@Builder
 @NoArgsConstructor
-@Table(name = "users")
-public class User {
+@AllArgsConstructor
+@Entity
+@Table(name = "coaches")
+public class Coach {
 
     @Id
-    @Column(name = "id", nullable = false, unique = true)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long Id;
 
     // Логин
     @Column(name = "user_name", nullable = false, unique = true)
@@ -67,13 +66,23 @@ public class User {
     @Column(name = "gender")
     private String gender;
 
-    @Column(name = "user_info")
-    private String userInfo;
+    @Column(name = "couch_info")
+    private String coachInfo;
 
     @Column(name = "photo_link")
     private String photoLink;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "coach")
     @Fetch(FetchMode.SUBSELECT)
-    private List<Card> cards;
+    private List<Scheduled> schedulers;
+
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    @JoinTable(
+            name = "coach_training_rel",
+            joinColumns = @JoinColumn(name = "coach_id"),
+            inverseJoinColumns = @JoinColumn(name = "training_id")
+    )
+    private List<Training> trainings;
 }
