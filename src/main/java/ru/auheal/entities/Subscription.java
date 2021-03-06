@@ -1,42 +1,63 @@
 package ru.auheal.entities;
 
-import lombok.*;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
-
+/**
+ * Сущность Пакет тренировок
+ */
+@Entity
 @Getter
 @Setter
-@ToString
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
-@Entity
 @Table(name = "subscriptions")
 public class Subscription {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
-    @Column(name = "training_name", nullable = false)
-    private String trainingName;
+    // Время начала действия пакета
+    @Column(name = "start_date_time", nullable = false)
+    private LocalDateTime startDateTime;
 
-    @Column(name = "price_subscription", nullable = false)
-    private BigDecimal priceSubscription;
+    // Время завершения действия пакета
+    @Column(name = "end_date_time")
+    private LocalDateTime endDateTime;
 
-    @Column(name = "count_visits")
-    private Integer countVisits;
+    // Общее количество тренировок
+    @Column(name = "initial_unit_amount", nullable = false)
+    private Short initialUnitAmount;
 
-    @Column(name = "kind_service")
-    private String kindService;
+    // Оставшееся количество тренировок
+    @Column(name = "remaining_unit_amount", nullable = false)
+    private Short remainingUnitAmount;
 
-    @OneToMany(mappedBy = "subscription")
-    @Fetch(FetchMode.SUBSELECT)
-    private List<Card> cards;
+    // Стоимость пакета
+    @Column(name = "total_price", nullable = false)
+    private Integer totalPrice;
+
+    // Цена за одну тренировку, оплачиваемая тренеру
+    @Column(name = "unit_price", nullable = false)
+    private Integer unitPrice;
+
+    // Продолжительность тренировки
+    @Column(name = "duration", nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    private Duration duration;
+
+    // Профиль клиента
+    @ManyToOne
+    @JoinColumn(name = "client_profile_id", nullable = false)
+    private ClientProfile clientProfile;
+
+    // Список тренировок, прошедших по данному пакету
+    @OneToMany(mappedBy = "trainingPackId")
+    private List<Training> trainings;
 }

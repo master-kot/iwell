@@ -8,41 +8,57 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static ru.auheal.helpers.Messages.DATA_NOT_BLANK;
 
 /**
- * Dto представление сущности Абонемент
+ * Dto представление сущности Пакет тренировок
  */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ApiModel(description = "Dto представление сущности Абонемент")
 public class SubscriptionDto {
 
+    //TODO проверить все типы переменных входящих полей и их позиции,
+    // добавить недостающие поля, enum типы привести к String
+    // сложные внутренние типы привести к простым
+    // добавить валидацию полей согласно ограничениям из БД
+
     @Positive
-    @ApiModelProperty(notes = "Уникальный идентификатор Абонемента", dataType = "Long", example = "1", required = true, position = 0)
+    @ApiModelProperty(notes = "Уникальный идентификатор Абонемента",
+            dataType = "Long", example = "1", required = true, position = 0)
     private Long subscriptionId;
-
-    @NotBlank(message = DATA_NOT_BLANK + "Название тренировки")
-    @ApiModelProperty(notes = "Название тренировки", dataType = "String",  example = "тренировка хатха-йога", required = true, position = 1)
-    private String trainingName;
-
-    @Positive
-    @ApiModelProperty(notes = "Цена Абонемента", dataType = "Long", example = "1", required = true, position = 2)
-    private Long priceSubscription;
-
-    @Positive
-    @ApiModelProperty(notes = "Количество посещений", dataType = "Long", example = "1", required = true, position = 3)
-    private Long countVisits;
 
     @NotBlank(message = DATA_NOT_BLANK + "Дата начала действия абонемента")
     @DateTimeFormat(pattern="yyyy.MM.dd")
-    @ApiModelProperty(notes = "Дата начала действия абонемента", dataType = "LocalDate", example = "2021-03-14", required = true, position = 1)
-    private LocalDate dateStart;
+    @ApiModelProperty(notes = "Дата начала действия абонемента",
+            dataType = "LocalDate", example = "2021-03-14", required = true, position = 1)
+    private LocalDateTime startDateTime;
 
     @NotBlank(message = DATA_NOT_BLANK + "Дата окончания действия абонемента")
     @DateTimeFormat(pattern="yyyy.MM.dd")
-    @ApiModelProperty(notes = "Дата окончания действия абонемента", dataType = "LocalDate", example = "2021-09-14", required = true, position = 1)
-    private LocalDate dateStop;
+    @ApiModelProperty(notes = "Дата окончания действия абонемента",
+            dataType = "LocalDate", example = "2021-09-14", required = true, position = 2)
+    private LocalDateTime endDateTime;
+
+    @Positive
+    @ApiModelProperty(notes = "Стоимость пакета",
+            dataType = "Long", example = "1", required = true, position = 3)
+    private Integer totalPrice;
+
+    @Positive
+    @ApiModelProperty(notes = "Общее количество тренировок",
+            dataType = "Long", example = "1", required = true, position = 4)
+    private Short initialUnitAmount;
+
+    @Positive
+    @ApiModelProperty(notes = "Оставшееся количество тренировок",
+            dataType = "Long",  example = "1", required = true, position = 5)
+    private Short remainingUnitAmount;
+
+    @NotBlank(message = DATA_NOT_BLANK + "Продолжительность тренировки")
+    @ApiModelProperty(notes = "Продолжительность тренировки",
+            dataType = "Long", example = "1", required = true, position = 6)
+    private String duration;
 }
