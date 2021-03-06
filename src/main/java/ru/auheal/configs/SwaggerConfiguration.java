@@ -36,7 +36,7 @@ public class SwaggerConfiguration {
     public Docket api() {
         ApiInfo apiInfo = new ApiInfo(
                 "Auheal API",
-                "API для подключения внешних чат клиентов",
+                "API для подключения фронтенд части сервиса",
                 "1.0",
                 "",
                 new Contact("Nikolay Gavrilov", "", ""),
