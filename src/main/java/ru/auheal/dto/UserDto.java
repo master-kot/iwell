@@ -65,8 +65,8 @@ public class UserDto {
     private String birthdayDate;
 
     @NotBlank(message = DATA_NOT_BLANK + "Укажите пол")
-    @ApiModelProperty(notes = "Пол пользователя пользователя",
-            dataType = "String",  example = "Ж", required = true, position = 7)
+    @ApiModelProperty(notes = "Пол пользователя пользователя, варианты: Женский, Мужской, Не выбран",
+            dataType = "String",  example = "Женский", required = true, position = 7)
     @NotBlank(message = DATA_NOT_BLANK + "Пол")
     private String gender;
 

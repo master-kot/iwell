@@ -3,6 +3,8 @@ package ru.auheal.entities;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.auheal.enums.Duration;
+import ru.auheal.enums.SportLevel;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

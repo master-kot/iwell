@@ -3,6 +3,7 @@ package ru.auheal.entities;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.auheal.enums.Gender;
 
 import javax.persistence.*;
 import java.time.LocalDate;
