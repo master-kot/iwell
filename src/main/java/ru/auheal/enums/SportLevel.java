@@ -1,4 +1,4 @@
-package ru.auheal.entities;
+package ru.auheal.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum SportLevel {
 
+    NOT_SELECTED("Не выбран"),
     LOW("Начальный"),
     MIDDLE("Средний"),
     HI("Подготовленный");
