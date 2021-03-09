@@ -24,6 +24,7 @@ public final class Messages {
     public static final String JWT_TOKEN_NOT_VALID = "Токен авторизации неверный либо истек его срок";
     public static final String BAD_CREDENTIALS = "Введен неверный логин или пароль";
     public static final String OLD_PASSWORD_INVALID = "Текущий пароль введен неверно";
+    public static final String PASSWORDS_MISMATCH = "Значения полей Пароль и Подтверждение пароля должны совпадать";
 
     /**
      * Иные сообщения об ошибках логики и полей запросов
@@ -36,4 +37,5 @@ public final class Messages {
     public static final String DATA_NOT_BLANK = "Должно быть не пустым поле ";
     public static final String DATA_WAS_NOT_FOUND_BY_ID = "Данные c индексом %s не найдены";
     public static final String DATA_WAS_NOT_SAVED = "Данные не сохранены по запросу ";
+    public static final String DATA_NOT_FOUND = "Данные не найдены ";
 }
