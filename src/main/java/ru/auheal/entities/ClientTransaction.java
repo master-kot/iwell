@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Table(name = "client_transactions")
 public class ClientTransaction {
 
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
     private Long Id;
@@ -29,7 +29,7 @@ public class ClientTransaction {
     // Профиль клиента
     @ManyToOne
     @JoinColumn(name = "client_profile_id", nullable = false)
-    private CoachProfile clientProfile;
+    private ClientProfile clientProfile;
 
     // Пакет тренировок, для покупки которого осуществлен перевод
     @ManyToOne

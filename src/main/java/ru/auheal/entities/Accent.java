@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Сущность Акцент тренировки
@@ -24,4 +25,7 @@ public class Accent {
     // Описание
     @Column(name = "description", nullable = false, unique = true, length = 150)
     private String description;
+
+    @OneToMany(mappedBy = "accent")
+    private List<Training> trainings;
 }

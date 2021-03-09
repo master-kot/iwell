@@ -24,4 +24,9 @@ public class Inventory {
     // Описание
     @Column(name = "description", nullable = false, unique = true, length = 100)
     private String description;
+
+    // Профиль тренера
+    @ManyToOne
+    @JoinColumn(name = "training_id", nullable = false)
+    private Training training;
 }

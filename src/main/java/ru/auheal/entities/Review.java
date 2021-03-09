@@ -25,17 +25,17 @@ public class Review {
     @Column(name = "text", nullable = false, length = 500)
     private String text;
 
-    // Профиль клиента, написавшего отзыв
-    @ManyToOne
-    @JoinColumn(name = "client_profile_id", nullable = false)
-    private ClientProfile clientProfileId;
+    // Оценка
+    @Column(name = "rating", nullable = false)
+    private Short rating;
 
     // Профиль тренера
     @ManyToOne
     @JoinColumn(name = "coach_profile_id", nullable = false)
     private CoachProfile coachProfileId;
 
-    // Оценка
-    @Column(name = "rating")
-    private Short rating;
+    // Профиль клиента, написавшего отзыв
+    @ManyToOne
+    @JoinColumn(name = "client_profile_id", nullable = false)
+    private ClientProfile clientProfileId;
 }
