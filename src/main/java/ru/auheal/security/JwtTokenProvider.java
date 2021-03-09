@@ -7,9 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import ru.auheal.dto.UserRequest;
 import ru.auheal.exceptions.JwtAuthenticationException;
 import ru.auheal.services.api.UserService;
 
@@ -63,12 +61,7 @@ public class JwtTokenProvider {
     }
 
     public Authentication getAuthentication(String token) {
-        UserDetails userDetails;
-        try {
-            userDetails = this.userDetailsService.loadUserByUsername(getUsername(token));
-        } catch (UsernameNotFoundException e) {
-            userDetails = createUserDetailsByToken(token);
-        }
+        UserDetails userDetails = this.userDetailsService.loadUserByUsername(getUsername(token));
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
@@ -89,20 +82,6 @@ public class JwtTokenProvider {
             Jws<Claims> claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
             return !claims.getBody().getExpiration().before(new Date());
         } catch (JwtException | IllegalArgumentException e) {
-            throw new JwtAuthenticationException(JWT_TOKEN_NOT_VALID);
-        }
-    }
-
-    private UserDetails createUserDetailsByToken(String token) {
-        Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
-        try {
-            UserRequest userRequest = new UserRequest();
-            userRequest.setUsername(claims.getSubject());
-            userRequest.setAuthorities((List<String>) claims.get("roles"));
-            userRequest.setId(((Integer) claims.get("id")).longValue());
-            userService.save(userRequest);
-            return this.userDetailsService.loadUserByUsername(claims.getSubject());
-        } catch (ClassCastException e) {
             throw new JwtAuthenticationException(JWT_TOKEN_NOT_VALID);
         }
     }
