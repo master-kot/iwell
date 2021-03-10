@@ -14,8 +14,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "income_couch_transactions")
-public class OutcomeCouchTransaction {
+@Table(name = "outcome_coach_transactions")
+public class OutcomeCoachTransaction {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

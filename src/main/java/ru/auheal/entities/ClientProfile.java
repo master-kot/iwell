@@ -27,14 +27,6 @@ public class ClientProfile {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    // Виды спорта
-    @ManyToMany
-    @JoinTable(
-            name = "client_sport_types",
-            joinColumns = @JoinColumn(name = "client_id"),
-            inverseJoinColumns = @JoinColumn(name = "sport_type_id"))
-    private List<SportType> sportTypes;
-
     // Короткая информация о себе
     @Column(name = "user_info", length = 500)
     private String userInfo;
@@ -58,4 +50,12 @@ public class ClientProfile {
     // Список денежных операций
     @OneToMany(mappedBy = "clientProfile")
     private List<ClientTransaction> clientTransactions;
+
+    // Виды спорта
+    @ManyToMany
+    @JoinTable(
+            name = "client_sport_types",
+            joinColumns = @JoinColumn(name = "client_profile_id"),
+            inverseJoinColumns = @JoinColumn(name = "sport_type_id"))
+    private List<SportType> sportTypes;
 }

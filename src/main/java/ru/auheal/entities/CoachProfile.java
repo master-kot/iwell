@@ -27,16 +27,8 @@ public class CoachProfile {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    // Виды спорта
-    @ManyToMany
-    @JoinTable(
-            name = "coach_sport_types",
-            joinColumns = @JoinColumn(name = "coach_id"),
-            inverseJoinColumns = @JoinColumn(name = "sport_type_id"))
-    private List<SportType> sportTypes;
-
     // Короткая информация о себе
-    @Column(name = "user_info", length = 500)
+    @Column(name = "coach_info", length = 500)
     private String userInfo;
 
     // Спортивные достижения
@@ -48,16 +40,12 @@ public class CoachProfile {
     private String sportsGrade;
 
     // Список тренировок
-    @OneToMany(mappedBy = "coachProfileId")
+    @OneToMany(mappedBy = "coachProfile")
     private List<Training> trainings;
 
     // Количество завершенных тренировок
-    @Column(name = "completed_trainings_amount", nullable = false)
-    private Integer completedTrainingsAmount;
-
-    // Отзывы о тренере
-    @OneToMany(mappedBy = "coachProfileId")
-    private List<Review> reviews;
+    @Column(name = "training_amount", nullable = false)
+    private Integer trainingAmount;
 
     // Средняя оценка (рейтинг тренера)
     @Column(name = "rating")
@@ -67,11 +55,23 @@ public class CoachProfile {
     @Column(name = "money_amount", nullable = false)
     private Integer moneyAmount;
 
+    // Отзывы о тренере
+    @OneToMany(mappedBy = "coachProfile")
+    private List<Review> reviews;
+
     // Список входящих денежных операций (приход денег за тренировку)
-    @OneToMany(mappedBy = "coachProfileId")
-    private List<IncomeCouchTransaction> incomeCouchTransactions;
+    @OneToMany(mappedBy = "coachProfile")
+    private List<IncomeCoachTransaction> incomeCoachTransactions;
 
     // Список исходящих денежных операций (вывод денег)
-    @OneToMany(mappedBy = "coachProfileId")
-    private List<OutcomeCouchTransaction> outcomeCouchTransactions;
+    @OneToMany(mappedBy = "coachProfile")
+    private List<OutcomeCoachTransaction> outcomeCoachTransactions;
+
+    // Виды спорта
+    @ManyToMany
+    @JoinTable(
+            name = "coach_sport_types",
+            joinColumns = @JoinColumn(name = "coach_profile_id"),
+            inverseJoinColumns = @JoinColumn(name = "sport_type_id"))
+    private List<SportType> sportTypes;
 }

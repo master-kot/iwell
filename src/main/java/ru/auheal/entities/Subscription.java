@@ -33,12 +33,12 @@ public class Subscription {
     private LocalDateTime endDateTime;
 
     // Общее количество тренировок
-    @Column(name = "initial_unit_amount", nullable = false)
-    private Short initialUnitAmount;
+    @Column(name = "initial_amount", nullable = false)
+    private Short initialAmount;
 
     // Оставшееся количество тренировок
-    @Column(name = "remaining_unit_amount", nullable = false)
-    private Short remainingUnitAmount;
+    @Column(name = "remaining_amount", nullable = false)
+    private Short remainingAmount;
 
     // Стоимость пакета
     @Column(name = "total_price", nullable = false)
@@ -59,6 +59,6 @@ public class Subscription {
     private ClientProfile clientProfile;
 
     // Список тренировок, прошедших по данному пакету
-    @OneToMany(mappedBy = "trainingPackId")
+    @OneToMany(mappedBy = "subscription")
     private List<Training> trainings;
 }

@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Сущность Инвентарь
@@ -24,4 +25,12 @@ public class Inventory {
     // Описание
     @Column(name = "description", nullable = false, unique = true, length = 100)
     private String description;
+
+    // Тренировка где используется инвентарь
+    @ManyToMany
+    @JoinTable(
+            name = "trainings_inventories",
+            joinColumns = @JoinColumn(name = "inventory_id"),
+            inverseJoinColumns = @JoinColumn(name = "training_id"))
+    private List<Training> trainings;
 }

@@ -50,12 +50,12 @@ public class SubscriptionDto {
     @Positive
     @ApiModelProperty(notes = "Общее количество тренировок",
             dataType = "Long", example = "1", required = true, position = 4)
-    private Short initialUnitAmount;
+    private Short initialAmount;
 
     @Positive
     @ApiModelProperty(notes = "Оставшееся количество тренировок",
             dataType = "Long",  example = "1", required = true, position = 5)
-    private Short remainingUnitAmount;
+    private Short remainingAmount;
 
     @NotBlank(message = DATA_NOT_BLANK + "Продолжительность тренировки")
     @ApiModelProperty(notes = "Продолжительность тренировки",
