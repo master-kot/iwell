@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS coach_profiles;
+DROP TABLE IF EXISTS gofit.coach_profiles;
 
-CREATE TABLE coach_profiles (
+CREATE TABLE gofit.coach_profiles (
     id                  bigserial NOT NULL UNIQUE,
     user_id             bigint NOT NULL,
     coach_info          varchar(500),
@@ -13,9 +13,9 @@ CREATE TABLE coach_profiles (
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
-DROP TABLE IF EXISTS client_profiles;
+DROP TABLE IF EXISTS gofit.client_profiles;
 
-CREATE TABLE client_profiles (
+CREATE TABLE gofit.client_profiles (
     id                  bigserial NOT NULL UNIQUE,
     user_id             bigint NOT NULL,
     user_info           varchar(500),
@@ -25,7 +25,7 @@ CREATE TABLE client_profiles (
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
-CREATE TABLE reviews (
+CREATE TABLE gofit.reviews (
     id                  serial NOT NULL UNIQUE,
     text                varchar(500) NOT NULL,
     rating              smallint NOT NULL,

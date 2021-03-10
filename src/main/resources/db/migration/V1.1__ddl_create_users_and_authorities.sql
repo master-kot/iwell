@@ -1,6 +1,8 @@
-DROP TABLE IF EXISTS users;
+CREATE SCHEMA IF NOT EXISTS gofit;
 
-CREATE TABLE users
+DROP TABLE IF EXISTS gofit.users;
+
+CREATE TABLE gofit.users
 (
     id              BIGSERIAL NOT NULL UNIQUE,
     user_name       VARCHAR(50) NOT NULL UNIQUE,
@@ -16,18 +18,18 @@ CREATE TABLE users
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS authorities;
+DROP TABLE IF EXISTS gofit.authorities;
 
-CREATE TABLE authorities
+CREATE TABLE gofit.authorities
 (
     id              SMALLSERIAL,
     authority       VARCHAR(50) NOT NULL UNIQUE,
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS users_authorities;
+DROP TABLE IF EXISTS gofit.users_authorities;
 
-CREATE TABLE users_authorities
+CREATE TABLE gofit.users_authorities
 (
     user_id         BIGINT,
     authority_id    SMALLINT,

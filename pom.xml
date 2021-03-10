@@ -8,11 +8,11 @@
 		<version>2.3.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>ru.auheal</groupId>
-	<artifactId>auheal</artifactId>
+	<groupId>ru.gofit</groupId>
+	<artifactId>gofit</artifactId>
 	<version>0.1</version>
-	<name>auheal</name>
-	<description>Project of the Auheal service</description>
+	<name>gofit</name>
+	<description>Project of the Gofit</description>
 
 	<properties>
 		<java.version>11</java.version>
