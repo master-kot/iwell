@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS gofit.client_transactions;
+DROP TABLE IF EXISTS client_transactions;
 
-CREATE TABLE gofit.client_transactions
+CREATE TABLE client_transactions
 (
     id                  bigserial NOT NULL UNIQUE,
     date_time           timestamp NOT NULL,
@@ -11,9 +11,9 @@ CREATE TABLE gofit.client_transactions
     FOREIGN KEY (subscription_id) REFERENCES subscriptions (id)
 );
 
-DROP TABLE IF EXISTS gofit.income_coach_transactions;
+DROP TABLE IF EXISTS income_coach_transactions;
 
-CREATE TABLE gofit.income_coach_transactions
+CREATE TABLE income_coach_transactions
 (
     id                  bigserial NOT NULL UNIQUE,
     date_time           timestamp NOT NULL,
@@ -24,9 +24,9 @@ CREATE TABLE gofit.income_coach_transactions
     FOREIGN KEY (subscription_id) REFERENCES subscriptions (id)
 );
 
-DROP TABLE IF EXISTS gofit.outcome_coach_transactions;
+DROP TABLE IF EXISTS outcome_coach_transactions;
 
-CREATE TABLE gofit.outcome_coach_transactions
+CREATE TABLE outcome_coach_transactions
 (
     id                  bigserial NOT NULL UNIQUE,
     date_time           timestamp NOT NULL,

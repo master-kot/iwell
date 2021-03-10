@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS gofit.subscriptions;
+DROP TABLE IF EXISTS subscriptions;
 
-CREATE TABLE gofit.subscriptions (
+CREATE TABLE subscriptions (
     id                  bigserial NOT NULL UNIQUE,
     start_date_time     timestamp NOT NULL,
     end_date_time       timestamp,
@@ -14,9 +14,9 @@ CREATE TABLE gofit.subscriptions (
     FOREIGN KEY (client_profile_id) REFERENCES client_profiles (id)
 );
 
-DROP TABLE IF EXISTS gofit.traininings;
+DROP TABLE IF EXISTS traininings;
 
-CREATE TABLE gofit.traininings (
+CREATE TABLE traininings (
     id                  bigserial NOT NULL UNIQUE,
     name                varchar(50),
     start_date_time     timestamp NOT NULL,
@@ -40,9 +40,9 @@ CREATE TABLE gofit.traininings (
     FOREIGN KEY (subscription_id) REFERENCES subscriptions (id)
 );
 
-DROP TABLE IF EXISTS gofit.traininings_inventories;
+DROP TABLE IF EXISTS traininings_inventories;
 
-CREATE TABLE gofit.traininings_inventories (
+CREATE TABLE traininings_inventories (
     trainining_id       bigint,
     inventory_id        smallint,
     PRIMARY KEY (trainining_id, inventory_id),

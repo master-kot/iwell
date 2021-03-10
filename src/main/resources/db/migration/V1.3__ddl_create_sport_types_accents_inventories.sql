@@ -1,22 +1,22 @@
-DROP TABLE IF EXISTS gofit.sport_types;
+DROP TABLE IF EXISTS sport_types;
 
-CREATE TABLE gofit.sport_types (
+CREATE TABLE sport_types (
     id                  smallserial NOT NULL UNIQUE,
     description varchar(50) NOT NULL,
     CONSTRAINT sport_types_pk PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS gofit.accents;
+DROP TABLE IF EXISTS accents;
 
-CREATE TABLE gofit.accents (
+CREATE TABLE accents (
     id                  smallserial NOT NULL UNIQUE,
     description         varchar(150) NOT NULL UNIQUE,
     CONSTRAINT accents_pk PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS gofit.inventories;
+DROP TABLE IF EXISTS inventories;
 
-CREATE TABLE gofit.inventories (
+CREATE TABLE inventories (
     id                  smallserial NOT NULL UNIQUE,
     description         varchar(100) NOT NULL UNIQUE,
     CONSTRAINT inventory_pk PRIMARY KEY (id)
