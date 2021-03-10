@@ -22,6 +22,6 @@ public class MainController {
     @GetMapping("")
     @ApiOperation(value = "Отображает главную страницу")
     public String getHomePage() {
-        return "news";
+        return "index";
     }
 }
