@@ -22,6 +22,11 @@ public class CoachProfile {
     @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
+    // Пользователь, которому соответствует данный профиль
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     // Короткая информация о себе
     @Column(name = "coach_info", length = 500)
     private String userInfo;
@@ -35,12 +40,12 @@ public class CoachProfile {
     private String sportsGrade;
 
     // Список тренировок
-    @OneToMany(mappedBy = "coachProfileId")
+    @OneToMany(mappedBy = "coachProfile")
     private List<Training> trainings;
 
     // Количество завершенных тренировок
-    @Column(name = "completed_trainings_amount", nullable = false)
-    private Integer completedTrainingsAmount;
+    @Column(name = "training_amount", nullable = false)
+    private Integer trainingAmount;
 
     // Средняя оценка (рейтинг тренера)
     @Column(name = "rating")
@@ -50,21 +55,16 @@ public class CoachProfile {
     @Column(name = "money_amount", nullable = false)
     private Integer moneyAmount;
 
-    // Пользователь, которому соответствует данный профиль
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
     // Отзывы о тренере
-    @OneToMany(mappedBy = "coachProfileId")
+    @OneToMany(mappedBy = "coachProfile")
     private List<Review> reviews;
 
     // Список входящих денежных операций (приход денег за тренировку)
-    @OneToMany(mappedBy = "coachProfileId")
+    @OneToMany(mappedBy = "coachProfile")
     private List<IncomeCoachTransaction> incomeCoachTransactions;
 
     // Список исходящих денежных операций (вывод денег)
-    @OneToMany(mappedBy = "coachProfileId")
+    @OneToMany(mappedBy = "coachProfile")
     private List<OutcomeCoachTransaction> outcomeCoachTransactions;
 
     // Виды спорта

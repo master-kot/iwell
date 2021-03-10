@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Сущность Тренировка
@@ -44,10 +45,13 @@ public class Training {
     @Enumerated(EnumType.ORDINAL)
     private SportLevel sportLevel;
 
-    // Инвентарь
-    @ManyToOne
-    @JoinColumn(name = "inventory_id")
-    private Inventory inventory;
+    // Список инвентаря
+    @ManyToMany
+    @JoinTable(
+            name = "trainings_inventories",
+            joinColumns = @JoinColumn(name = "training_id"),
+            inverseJoinColumns = @JoinColumn(name = "inventory_id"))
+    private List<Inventory> inventories;
 
     // Акцент на который направлено занятие
     @ManyToOne
@@ -58,6 +62,11 @@ public class Training {
     @ManyToOne
     @JoinColumn(name = "coach_profile_id", nullable = false)
     private CoachProfile coachProfile;
+
+    // Профиль клиента-участника тренировки
+    @ManyToOne
+    @JoinColumn(name = "client_profile_id")
+    private ClientProfile clientProfile;
 
     // Ссылка на онлайн трансляцию тренировки
     @Column(name = "video_link", length = 150)
@@ -76,11 +85,6 @@ public class Training {
     @ManyToOne
     @JoinColumn(name = "subscription_id")
     private Subscription subscription;
-
-    // Профиль клиента-участника тренировки
-    @ManyToOne
-    @JoinColumn(name = "client_profile_id")
-    private ClientProfile clientProfile;
 
     // Статус завершения тренировки
     @Column(name = "was_completed", nullable = false)

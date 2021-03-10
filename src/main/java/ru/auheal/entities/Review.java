@@ -18,7 +18,7 @@ public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false, unique = true)
     private Integer id;
 
     // Текст отзыва
@@ -32,10 +32,10 @@ public class Review {
     // Профиль тренера
     @ManyToOne
     @JoinColumn(name = "coach_profile_id", nullable = false)
-    private CoachProfile coachProfileId;
+    private CoachProfile coachProfile;
 
     // Профиль клиента, написавшего отзыв
     @ManyToOne
     @JoinColumn(name = "client_profile_id", nullable = false)
-    private ClientProfile clientProfileId;
+    private ClientProfile clientProfile;
 }
