@@ -1,6 +1,7 @@
 package ru.auheal.services.api;
 
 import org.springframework.security.core.Authentication;
+import ru.auheal.dto.PasswordRequest;
 import ru.auheal.dto.UserDto;
 import ru.auheal.dto.UserRequest;
 import ru.auheal.security.JwtUser;
@@ -96,4 +97,13 @@ public interface UserService {
      * @return удален ли пользователь
      */
     boolean deleteById(Long id);
+
+    /**
+     * Изменить пароль пользователя
+     *
+     * @param passwordRequest данные для изменения пароля
+     * @param authentication данные авторизации
+     * @return измененен ли пользователь
+     */
+    boolean updatePassword(PasswordRequest passwordRequest, Authentication authentication);
 }

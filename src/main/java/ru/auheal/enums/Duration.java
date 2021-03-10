@@ -1,4 +1,4 @@
-package ru.auheal.entities;
+package ru.auheal.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

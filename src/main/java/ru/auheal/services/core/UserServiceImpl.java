@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.auheal.dto.PasswordRequest;
 import ru.auheal.dto.UserDto;
 import ru.auheal.dto.UserRequest;
 import ru.auheal.entities.User;
@@ -21,6 +22,7 @@ import ru.auheal.services.api.UserService;
 import java.util.List;
 
 import static ru.auheal.helpers.Messages.*;
+import static ru.auheal.helpers.Roles.ROLE_USER;
 
 /**
  * Сервис пользователей
@@ -29,11 +31,9 @@ import static ru.auheal.helpers.Messages.*;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
 
-    // Необходимые сервисы и мапперы
+    // Необходимые сервисы, мапперы и репозитории
     private final BCryptPasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
-
-    // Необходимые репозитории
     private final UserRepository userRepository;
     private final AuthorityRepository authorityRepository;
 
@@ -70,9 +70,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
 
         User newUser = userMapper.mapDtoToEntity(userRequest);
-        for (String authority : userRequest.getAuthorities()) {
-            newUser.getAuthorities().add(authorityRepository.findByAuthority(authority));
-        }
+            newUser.getAuthorities().add(authorityRepository.findByAuthority(ROLE_USER));
         return userMapper.mapEntityToDto(userRepository.save(newUser));
     }
 
@@ -91,6 +89,23 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userMapper.mapEntityToJwt(findByUsername(username));
+    }
+
+    @Override
+    public boolean updatePassword(PasswordRequest passwordRequest,
+                                  Authentication authentication) {
+        if (!passwordRequest.getNewPassword().equals(passwordRequest.getNewPasswordConfirm())) {
+            throw new DataBadRequestException(PASSWORDS_MISMATCH);
+        }
+
+        User user = findByUsername(authentication.getName());
+        if (!passwordEncoder.matches(passwordRequest.getOldPassword(), user.getPassword())) {
+            throw new DataBadRequestException(OLD_PASSWORD_INVALID);
+        } else {
+            user.setPassword(passwordEncoder.encode(passwordRequest.getNewPassword()));
+            userRepository.save(user);
+            return true;
+        }
     }
 
     /**
