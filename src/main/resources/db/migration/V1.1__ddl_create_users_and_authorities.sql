@@ -8,7 +8,7 @@ CREATE TABLE users
     enabled         BOOLEAN NOT NULL,
     first_name      VARCHAR(50),
     last_name       varchar(50),
-    adress          varchar(100),
+    address         varchar(100),
     phone           varchar(20),
     birthday_date   timestamp,
     gender          smallint NOT NULL,
