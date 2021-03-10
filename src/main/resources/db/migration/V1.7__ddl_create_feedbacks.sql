@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS feedbacks;
+DROP TABLE IF EXISTS gofit.feedbacks;
 
-CREATE TABLE feedbacks (
+CREATE TABLE gofit.feedbacks (
     id                  bigserial NOT NULL UNIQUE,
     name                varchar(50),
     phone               varchar(20),
