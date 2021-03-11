@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.gofit.dto.SportTypeRqDto;
 import ru.gofit.dto.SportTypeRsDto;
@@ -24,32 +25,35 @@ public class SportTypeController {
     private final SportTypeService sportTypeService;
 
     @ApiOperation("Запрос списка видов спорта")
-//    @ApiResponses({
-//            @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "OK"),
-//            @ApiResponse(code = HttpURLConnection.HTTP_NOT_FOUND, message = "NOT FOUND"),
-//            @ApiResponse(code = HttpURLConnection.HTTP_UNAUTHORIZED, message = "UNAUTHORIZED"),
-//            @ApiResponse(code = HttpURLConnection.HTTP_FORBIDDEN, message = "FORBIDDEN")
-//    })
     @GetMapping
     public Page<SportTypeRsDto> getAll(Pageable pageable) {
         return sportTypeService.getAll(pageable);
     }
 
     @ApiOperation("Запрос вида спорта по id")
-//    @ApiResponses({
-//            @ApiResponse(code = HttpURLConnection.HTTP_OK, message = "OK"),
-//            @ApiResponse(code = HttpURLConnection.HTTP_NOT_FOUND, message = "NOT FOUND"),
-//            @ApiResponse(code = HttpURLConnection.HTTP_UNAUTHORIZED, message = "UNAUTHORIZED"),
-//            @ApiResponse(code = HttpURLConnection.HTTP_FORBIDDEN, message = "FORBIDDEN")
-//    })
     @GetMapping("/{id}")
     public SportTypeRsDto getById(@ApiParam(name = "id", value = "ID вида спорта") @PathVariable Short id) {
         return sportTypeService.getById(id);
     }
 
-    @ApiOperation("Создать вида спорта")
+    @ApiOperation("Создать вид спорта")
     @PostMapping
-    public SportTypeRsDto create(@Valid @RequestBody SportTypeRqDto sportTypeRqDto) {
-        return sportTypeService.create(sportTypeRqDto);
+    public SportTypeRsDto save(@Valid @RequestBody SportTypeRqDto sportTypeRqDto) {
+        return sportTypeService.save(sportTypeRqDto);
+    }
+
+    @ApiOperation("Обновить вид спорта")
+    @PutMapping("/{id}")
+    public SportTypeRsDto update(@ApiParam(name = "id", value = "ID вида спорта") @PathVariable Short id,
+                                 @RequestBody SportTypeRqDto sportTypeRqDto) {
+        return sportTypeService.update(id, sportTypeRqDto);
+    }
+
+    @ApiOperation("Удалить вид спорта")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@ApiParam(name = "id", value = "ID вида спорта") @PathVariable Short id) {
+        sportTypeService.deleteById(id);
+        return ResponseEntity.accepted()
+                .build();
     }
 }

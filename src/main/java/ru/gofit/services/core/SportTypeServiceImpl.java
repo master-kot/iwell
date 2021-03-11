@@ -13,6 +13,7 @@ import ru.gofit.repositories.SportTypeRepository;
 import ru.gofit.services.api.SportTypeService;
 
 import static ru.gofit.helpers.Messages.DATA_WAS_NOT_FOUND_BY_ID;
+import static ru.gofit.helpers.Messages.USER_NOT_FOUND_BY_ID;
 
 @Service
 @RequiredArgsConstructor
@@ -37,8 +38,26 @@ public class SportTypeServiceImpl implements SportTypeService {
     }
 
     @Override
-    public SportTypeRsDto create(SportTypeRqDto sportTypeRqDto) {
+    public SportTypeRsDto save(SportTypeRqDto sportTypeRqDto) {
         SportType newSportType = sportTypeRepository.save(sportTypeMapper.mapDtoToEntity(sportTypeRqDto));
         return sportTypeMapper.mapEntityToDto(newSportType);
+    }
+
+    @Override
+    public SportTypeRsDto update(Short id, SportTypeRqDto sportTypeRqDto) {
+        SportType sportTypeFromDb = sportTypeRepository.findById(id)
+                .orElseThrow(() -> new DataNotFoundException(String.format(USER_NOT_FOUND_BY_ID, id)));
+        SportType updateSportType = sportTypeMapper.update(sportTypeFromDb, sportTypeRqDto);
+        return sportTypeMapper.mapEntityToDto(sportTypeRepository.save(updateSportType));
+    }
+
+    @Override
+    public void deleteById(Short id) {
+        sportTypeRepository.findById(id)
+                .ifPresentOrElse(sportTypeRepository::delete,
+                        () -> {
+                            throw new DataNotFoundException(String.format(USER_NOT_FOUND_BY_ID, id));
+                        }
+                );
     }
 }
