@@ -7,11 +7,12 @@ import org.springframework.stereotype.Service;
 import ru.gofit.dto.SportTypeRqDto;
 import ru.gofit.dto.SportTypeRsDto;
 import ru.gofit.entities.SportType;
+import ru.gofit.exceptions.DataNotFoundException;
 import ru.gofit.mappers.SportTypeMapper;
 import ru.gofit.repositories.SportTypeRepository;
 import ru.gofit.services.api.SportTypeService;
 
-import java.util.Optional;
+import static ru.gofit.helpers.Messages.DATA_WAS_NOT_FOUND_BY_ID;
 
 @Service
 @RequiredArgsConstructor
@@ -27,9 +28,12 @@ public class SportTypeServiceImpl implements SportTypeService {
     }
 
     @Override
-    public Optional<SportTypeRsDto> getById(Short id) {
+    public SportTypeRsDto getById(Short id) {
         return sportTypeRepository.findById(id)
-                .map(sportTypeMapper::mapEntityToDto);
+                .map(sportTypeMapper::mapEntityToDto)
+                .orElseThrow(() ->
+                        new DataNotFoundException(String.format(DATA_WAS_NOT_FOUND_BY_ID, id))
+                );
     }
 
     @Override
