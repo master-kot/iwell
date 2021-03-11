@@ -1,17 +1,27 @@
+DROP TABLE IF EXISTS category_subscriptions;
+
+CREATE TABLE category_subscriptions
+(
+    id                  smallint NOT NULL ,
+    initial_amount      smallint NOT NULL,
+    total_price         integer NOT NULL,
+    unit_price          integer NOT NULL,
+    duration            smallint NOT NULL,
+    PRIMARY KEY (id)
+);
+
 DROP TABLE IF EXISTS subscriptions;
 
 CREATE TABLE subscriptions (
     id                  bigserial NOT NULL UNIQUE,
     start_date_time     timestamp NOT NULL,
     end_date_time       timestamp,
-    initial_amount      smallint NOT NULL,
     remaining_amount    smallint NOT NULL,
-    total_price         integer NOT NULL,
-    unit_price          integer NOT NULL,
-    duration            smallint NOT NULL,
     client_profile_id   bigint NOT NULL,
+    category_subscription_id bigint NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (client_profile_id) REFERENCES client_profiles (id)
+    FOREIGN KEY (client_profile_id) REFERENCES client_profiles (id),
+    FOREIGN KEY (category_subscription_id) REFERENCES category_subscriptions (id)
 );
 
 DROP TABLE IF EXISTS traininings;

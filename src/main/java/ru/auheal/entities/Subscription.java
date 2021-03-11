@@ -1,5 +1,6 @@
 package ru.auheal.entities;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,31 +33,18 @@ public class Subscription {
     @Column(name = "end_date_time")
     private LocalDateTime endDateTime;
 
-    // Общее количество тренировок
-    @Column(name = "initial_amount", nullable = false)
-    private Short initialAmount;
-
     // Оставшееся количество тренировок
     @Column(name = "remaining_amount", nullable = false)
     private Short remainingAmount;
 
-    // Стоимость пакета
-    @Column(name = "total_price", nullable = false)
-    private Integer totalPrice;
-
-    // Цена за одну тренировку, оплачиваемая тренеру
-    @Column(name = "unit_price", nullable = false)
-    private Integer unitPrice;
-
-    // Продолжительность тренировки
-    @Column(name = "duration", nullable = false)
-    @Enumerated(EnumType.ORDINAL)
-    private Duration duration;
-
-    // Профиль клиента
+     // Профиль клиента
     @ManyToOne
     @JoinColumn(name = "client_profile_id", nullable = false)
     private ClientProfile clientProfile;
+
+    @ManyToOne
+    @JoinColumn(name = "category_subscription_id", nullable = false)
+    private CategorySubscription categorySubscription;
 
     // Список тренировок, прошедших по данному пакету
     @OneToMany(mappedBy = "subscription")

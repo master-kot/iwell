@@ -3,12 +3,18 @@ package ru.auheal.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.BasicAuthDefinition;
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
+import ru.auheal.entities.CategorySubscription;
+import ru.auheal.entities.ClientProfile;
+import ru.auheal.entities.Training;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static ru.auheal.helpers.Messages.DATA_NOT_BLANK;
 
@@ -16,6 +22,7 @@ import static ru.auheal.helpers.Messages.DATA_NOT_BLANK;
  * Dto представление сущности Пакет тренировок
  */
 @Data
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ApiModel(description = "Dto представление сущности Абонемент")
 public class SubscriptionDto {
@@ -43,22 +50,20 @@ public class SubscriptionDto {
     private LocalDateTime endDateTime;
 
     @Positive
-    @ApiModelProperty(notes = "Стоимость пакета",
-            dataType = "Long", example = "1", required = true, position = 3)
-    private Integer totalPrice;
-
-    @Positive
-    @ApiModelProperty(notes = "Общее количество тренировок",
-            dataType = "Long", example = "1", required = true, position = 4)
-    private Short initialAmount;
-
-    @Positive
     @ApiModelProperty(notes = "Оставшееся количество тренировок",
-            dataType = "Long",  example = "1", required = true, position = 5)
+            dataType = "Long",  example = "1", required = true, position = 3)
     private Short remainingAmount;
 
-    @NotBlank(message = DATA_NOT_BLANK + "Продолжительность тренировки")
-    @ApiModelProperty(notes = "Продолжительность тренировки",
-            dataType = "Long", example = "1", required = true, position = 6)
-    private String duration;
+    @ApiModelProperty(notes = "Профиль клиента",
+            dataType = "ClientProfile", required = true, position = 4)
+    private ClientProfileDto clientProfileDto;
+
+    @NotBlank(message = DATA_NOT_BLANK + "Список тренировок")
+    @ApiModelProperty(notes = "Тренировки, входящие в абонимент",
+            dataType = "List<Training>", required = true, position = 5)
+    private List<Training> trainings;
+
+    @ApiModelProperty(notes = "Категория абонемента",
+            dataType = "CategorySubscription", required = true, position = 4)
+    private CategorySubscriptionDto categorySubscriptionDto;
 }
