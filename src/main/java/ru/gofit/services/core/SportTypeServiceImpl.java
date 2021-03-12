@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.gofit.dto.SportTypeRqDto;
 import ru.gofit.dto.SportTypeRsDto;
 import ru.gofit.entities.SportType;
@@ -38,12 +39,14 @@ public class SportTypeServiceImpl implements SportTypeService {
     }
 
     @Override
+    @Transactional
     public SportTypeRsDto save(SportTypeRqDto sportTypeRqDto) {
         SportType newSportType = sportTypeRepository.save(sportTypeMapper.mapDtoToEntity(sportTypeRqDto));
         return sportTypeMapper.mapEntityToDto(newSportType);
     }
 
     @Override
+    @Transactional
     public SportTypeRsDto update(Short id, SportTypeRqDto sportTypeRqDto) {
         SportType sportTypeFromDb = sportTypeRepository.findById(id)
                 .orElseThrow(() -> new DataNotFoundException(String.format(USER_NOT_FOUND_BY_ID, id)));
@@ -52,6 +55,7 @@ public class SportTypeServiceImpl implements SportTypeService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Short id) {
         sportTypeRepository.findById(id)
                 .ifPresentOrElse(sportTypeRepository::delete,
