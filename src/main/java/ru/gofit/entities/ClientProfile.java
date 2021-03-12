@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Сущность Профиль клиента
@@ -23,13 +24,12 @@ public class ClientProfile {
     private Long id;
 
     // Пользователь, которому соответствует данный профиль
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @OneToOne(optional = false, mappedBy = "clientProfile", cascade = CascadeType.ALL)
     private User user;
 
     // Короткая информация о себе
-    @Column(name = "user_info", length = 500)
-    private String userInfo;
+    @Column(name = "client_info", length = 500)
+    private String clientInfo;
 
     // Спортивные достижения
     @Column(name = "sports_achivments", length = 150)
@@ -40,15 +40,15 @@ public class ClientProfile {
     private String sportsGrade;
 
     // Список пакетов тренировок
-    @OneToMany(mappedBy = "clientProfile")
+    @OneToMany(mappedBy = "clientProfile", cascade = CascadeType.ALL)
     private List<Subscription> subscriptions;
 
     // Список тренировок для данного клиента
-    @OneToMany(mappedBy = "clientProfile")
+    @OneToMany(mappedBy = "clientProfile", cascade = CascadeType.ALL)
     private List<Training> trainings;
 
     // Список денежных операций
-    @OneToMany(mappedBy = "clientProfile")
+    @OneToMany(mappedBy = "clientProfile", cascade = CascadeType.ALL)
     private List<ClientTransaction> clientTransactions;
 
     // Виды спорта
@@ -57,5 +57,5 @@ public class ClientProfile {
             name = "client_sport_types",
             joinColumns = @JoinColumn(name = "client_profile_id"),
             inverseJoinColumns = @JoinColumn(name = "sport_type_id"))
-    private List<SportType> sportTypes;
+    private Set<SportType> sportTypes;
 }

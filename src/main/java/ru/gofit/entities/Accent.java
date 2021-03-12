@@ -26,6 +26,6 @@ public class Accent {
     @Column(name = "description", nullable = false, unique = true, length = 150)
     private String description;
 
-    @OneToMany(mappedBy = "accent")
+    @OneToMany(mappedBy = "accent", cascade = CascadeType.ALL)
     private List<Training> trainings;
 }
