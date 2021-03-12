@@ -7,8 +7,8 @@ import ru.gofit.enums.Gender;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import static javax.persistence.FetchType.EAGER;
 
@@ -46,7 +46,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             // Внешний ключ для другой стороны, User в таблице users_authorities
             inverseJoinColumns = @JoinColumn(name = "authority_id"))
-    private List<Authority> authorities = new ArrayList<>();
+    private Set<Authority> authorities = new HashSet<>();
 
     // Имя
     @Column(name = "first_name", length = 50)
@@ -76,4 +76,14 @@ public class User {
     // Ссылка на фото
     @Column(name = "photo_link", length = 100)
     private String photoLink;
+
+    // Профиль тренера
+    @OneToOne
+    @JoinColumn(name = "coach_profile_id")
+    private CoachProfile coachProfile;
+
+    // Профиль клиента
+    @OneToOne
+    @JoinColumn(name = "client_profile_id")
+    private ClientProfile clientProfile;
 }
