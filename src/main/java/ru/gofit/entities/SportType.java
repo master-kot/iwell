@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Сущность Вид спорта
@@ -32,7 +32,7 @@ public class SportType {
             name = "client_sport_types",
             joinColumns = @JoinColumn(name = "sport_type_id"),
             inverseJoinColumns = @JoinColumn(name = "client_profile_id"))
-    private List<ClientProfile> clientProfiles;
+    private Set<ClientProfile> clientProfiles;
 
     // Профили тренеров
     @ManyToMany
@@ -40,5 +40,5 @@ public class SportType {
             name = "coach_sport_types",
             joinColumns = @JoinColumn(name = "sport_type_id"),
             inverseJoinColumns = @JoinColumn(name = "coach_profile_id"))
-    private List<CoachProfile> coachProfiles;
+    private Set<CoachProfile> coachProfiles;
 }
