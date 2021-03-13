@@ -3,6 +3,7 @@ package ru.auheal.mappers;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import ru.auheal.dto.ReviewDto;
+import ru.auheal.dto.ReviewRequest;
 import ru.auheal.entities.Review;
 
 import java.util.List;
@@ -17,5 +18,5 @@ public interface ReviewMapper  {
 
     List<ReviewDto> mapEntityToDto(List<Review> entities);
 
-    Review mapDtoToEntity(ReviewDto dto);
+    Review mapDtoToEntity(ReviewRequest dto);
 }

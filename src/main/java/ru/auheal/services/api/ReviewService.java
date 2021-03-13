@@ -3,43 +3,64 @@ package ru.auheal.services.api;
 import org.springframework.security.core.Authentication;
 import ru.auheal.dto.ReviewDto;
 import ru.auheal.dto.ReviewRequest;
+import ru.auheal.exceptions.DataBadRequestException;
+import ru.auheal.exceptions.DataNotFoundException;
 
 import java.util.List;
 
 /**
  * Сервис Отзывов клиентов о тренерах
  */
+
+
 public interface ReviewService {
 
     /**
-     * Найти отзыв по идентификатору запроса
+     * Возращает рецензию по её идентификатору
      *
-     * @param id идентификатор запроса на получение отзыва
-     * @return предствление Dto отзыва
+     * @param reviewId идентификатор рецензии
+     * @param coachId идентификатор тренера
+     * @exception DataBadRequestException, площадка не указана
+     * @exception DataNotFoundException, не найден тренер
+     * @return ReviewDto
      */
-    ReviewDto getDtoById(Long id);
+    ReviewDto readReviewDtoById(Long reviewId, Long coachId);
 
     /**
-     * Найти все отзывы
+     * Возращает рецензии по идентификатору тренера
      *
-     * @return список данных
+     * @param coachId идентификатор тренера
+     * @return List<ReviewDto>
      */
-    List<ReviewDto> getAllDto();
+    List<ReviewDto> readAllReviewsDtoBySportGround(Long coachId);
 
     /**
-     * Создать новые данные обратной связи  с использованием данных аунтификации
-     *
-     * @param reviewRequest запрос, содержащий данные об отзыве
-     * @param auntification данные аунтификации пользователя
-     * @return данные, сохраненные в репозитории
+     * Сохраняет новую рецензию
+     * @param coachId идентификатор тренера
+     * @param request запрос (текст рецензии)
+     * @param authentication данные авторизации
+     * @exception DataBadRequestException, не найден тренер
+     * @return dto новой рецензии
      */
-    ReviewDto save(ReviewRequest reviewRequest, Authentication auntification);
+    ReviewDto saveReview(Long coachId, ReviewRequest request, Authentication authentication);
 
     /**
-     * Удалить отзыв по идентификатору запроса
-     *
-     * @param id идентификатор запроса
-     * @return удалены ли данные
+     * Обновляет рецензию (текст, имя юзера)
+     * @param coachId идентификатор тренера
+     * @param request запрос (текст рецензии)
+     * @param authentication данные авторизации
+     * @exception DataNotFoundException, не получилось найти рецензию
+     * @return dto обновлённой рецензии
      */
-    boolean deleteById(Long id);
+    ReviewDto updateReview(Long coachId, ReviewRequest request, Authentication authentication);
+
+    /**
+     * Удаление рецензии (только автор рецензии)
+     * @param reviewId идентификатор рецензии
+     * @param coachId идентификатор тренера
+     * @param authentication данные авторизации
+     * @exception DataNotFoundException, не получилось найти рецензию
+     * @return true, false - удаленна ли сущность
+     */
+    Boolean deleteById(Long reviewId, Long coachId, Authentication authentication);
 }

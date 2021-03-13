@@ -4,6 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import ru.auheal.dto.SubscriptionDto;
 import ru.auheal.entities.Subscription;
+import ru.auheal.entities.Training;
 
 import java.util.List;
 

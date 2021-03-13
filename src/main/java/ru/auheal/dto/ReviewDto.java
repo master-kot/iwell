@@ -4,14 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import ru.auheal.entities.ClientProfile;
-import ru.auheal.entities.CoachProfile;
-import ru.auheal.entities.Training;
-
-import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
@@ -22,13 +14,14 @@ import static ru.auheal.helpers.Messages.DATA_NOT_BLANK;
 /**
  * Dto представление сущности Отзыв о тренере
  */
+
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ApiModel(description = "Dto представление сущности Отзыв о тренере")
 public class ReviewDto  {
 
     @Positive
-    @ApiModelProperty(notes = "Уникальный идентификатор тренировки",
+    @ApiModelProperty(notes = "Уникальный идентификатор отзыва",
             dataType = "Long", example = "1", required = true, position = 0)
     private Long trainingId;
 
@@ -38,7 +31,7 @@ public class ReviewDto  {
             dataType = "String", example = "Текст сообщения", required = true, position = 1)
     private String text;
 
-    @NotBlank(message = DATA_NOT_BLANK + "Ваше сообщение")
+    @NotBlank(message = DATA_NOT_BLANK + "Рейтинг тренера")
     @ApiModelProperty(notes = "Рейтинг Тренера",
             dataType = "Shotr", example = "1", required = true, position = 2)
     private Short raiting;

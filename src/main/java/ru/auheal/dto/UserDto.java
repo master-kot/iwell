@@ -47,7 +47,7 @@ public class UserDto {
     @NotBlank(message = DATA_NOT_BLANK + "Фамилия")
     @ApiModelProperty(notes = "Фамилия Пользователя",
             dataType = "String", example = "Иванов", required = true, position = 3)
-    private String  lastnameName;
+    private String  lastName;
 
     @NotBlank(message = DATA_NOT_BLANK + "Адрес пользователя")
     @ApiModelProperty(notes = "Адрес пользователя",
