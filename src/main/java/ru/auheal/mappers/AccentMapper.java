@@ -1,9 +1,9 @@
-package ru.auheal.dto;
+package ru.auheal.mappers;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
+import ru.auheal.dto.AccentDto;
 import ru.auheal.entities.Accent;
-import ru.auheal.entities.Review;
 
 import java.util.List;
 

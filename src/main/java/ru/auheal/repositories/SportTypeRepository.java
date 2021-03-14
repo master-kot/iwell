@@ -2,6 +2,7 @@ package ru.auheal.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import ru.auheal.entities.Accent;
 import ru.auheal.entities.SportType;
 
 /**
@@ -9,5 +10,5 @@ import ru.auheal.entities.SportType;
  */
 @Repository
 public interface SportTypeRepository extends JpaRepository<SportType, Short> {
-
+    SportType findByDescription(String description);
 }

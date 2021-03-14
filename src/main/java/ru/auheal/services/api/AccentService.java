@@ -24,20 +24,20 @@ public interface AccentService {
      *
      * @return List<ReviewDto>
      */
-    List<AccentDto> readAllAccentDto();
+    List<AccentDto> readAllAccentesDto();
 
 
     /**
-     * Сохраняет новый Акцент
+     * Сохраняет новый Акцент (только Администратор)
      *
      * @param authentication данные авторизации
-     * @param accent запрос на создание нового акцента
+     * @param accentDto запрос на создание нового акцента
      * @return dto нового акцента
      */
-    AccentDto saveAccent( AccentDto accent,  Authentication authentication);
+    AccentDto saveAccent( AccentDto accentDto,  Authentication authentication);
 
     /**
-     * Обновляет акцент
+     * Обновляет акцент (только Администратор)
      *
      * @param accentDto запрос на обновление
      * @param authentication данные авторизации
@@ -47,7 +47,7 @@ public interface AccentService {
     AccentDto updateAccent(AccentDto accentDto, Authentication authentication);
 
     /**
-     * Удаление рецензии (только автор рецензии)
+     * Удаление рецензии (только Администратор)
      * @param accentId идентификатор Акцента
      * @param authentication данные авторизации
      * @exception DataNotFoundException, не получилось найти Акцент

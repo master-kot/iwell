@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import ru.auheal.dto.AccentDto;
-import ru.auheal.dto.AccentMapper;
+import ru.auheal.mappers.AccentMapper;
 import ru.auheal.exceptions.DataBadRequestException;
 import ru.auheal.helpers.Roles;
 import ru.auheal.repositories.AccentRepository;
@@ -26,7 +26,8 @@ public class AccentServiceImpl implements AccentService {
     }
 
     @Override
-    public List<AccentDto> readAllAccentDto() {
+    public List<AccentDto> readAllAccentesDto()
+    {
         return accentMapper.mapEntityToDto(accentRepository.findAll());
     }
 
