@@ -6,8 +6,8 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Сущность Роль пользователя
@@ -34,5 +34,5 @@ public class Authority implements GrantedAuthority {
             joinColumns = @JoinColumn(name = "authority_id"),
             // Внешний ключ для другой стороны, Authority в таблице users_authorities
             inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<User> users = new ArrayList<>();
+    private Set<User> users = new HashSet<>();
 }

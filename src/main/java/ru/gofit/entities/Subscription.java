@@ -59,6 +59,6 @@ public class Subscription {
     private ClientProfile clientProfile;
 
     // Список тренировок, прошедших по данному пакету
-    @OneToMany(mappedBy = "subscription")
+    @OneToMany(mappedBy = "subscription", cascade = CascadeType.ALL)
     private List<Training> trainings;
 }

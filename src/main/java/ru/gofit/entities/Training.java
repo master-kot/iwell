@@ -8,7 +8,7 @@ import ru.gofit.enums.SportLevel;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Сущность Тренировка
@@ -46,14 +46,6 @@ public class Training {
     @Column(name = "sport_level_id", nullable = false)
     @Enumerated(EnumType.ORDINAL)
     private SportLevel sportLevel;
-
-    // Список инвентаря
-    @ManyToMany
-    @JoinTable(
-            name = "trainings_inventories",
-            joinColumns = @JoinColumn(name = "training_id"),
-            inverseJoinColumns = @JoinColumn(name = "inventory_id"))
-    private List<Inventory> inventories;
 
     // Акцент на который направлено занятие
     @ManyToOne
@@ -95,4 +87,12 @@ public class Training {
     // Комментарий, оставленный тренером, не видимый пользователю
     @Column(name = "comment", length = 100)
     private String comment;
+
+    // Список инвентаря
+    @ManyToMany
+    @JoinTable(
+            name = "trainings_inventories",
+            joinColumns = @JoinColumn(name = "training_id"),
+            inverseJoinColumns = @JoinColumn(name = "inventory_id"))
+    private Set<Inventory> inventories;
 }
