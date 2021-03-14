@@ -20,11 +20,11 @@ public interface ReviewService {
      *
      * @param reviewId идентификатор рецензии
      * @param coachId идентификатор тренера
-     * @exception DataBadRequestException, площадка не указана
+     * @exception DataBadRequestException,
      * @exception DataNotFoundException, не найден тренер
      * @return ReviewDto
      */
-    ReviewDto readReviewDtoById(Long reviewId, Long coachId);
+    ReviewDto readReviewDtoByIdAndCoachId(Long reviewId, Long coachId);
 
     /**
      * Возращает рецензии по идентификатору тренера
@@ -32,7 +32,7 @@ public interface ReviewService {
      * @param coachId идентификатор тренера
      * @return List<ReviewDto>
      */
-    List<ReviewDto> readAllReviewsDtoBySportGround(Long coachId);
+    List<ReviewDto> readAllReviewsDtoByCoachId(Long coachId);
 
     /**
      * Сохраняет новую рецензию

@@ -37,7 +37,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 
     @Override
-    public ReviewDto readReviewDtoById(Long reviewId, Long coachId) {
+    public ReviewDto readReviewDtoByIdAndCoachId(Long reviewId, Long coachId) {
         Review review = findById(reviewId);
         if (!review.getCoachProfile().getId().equals(coachId)) {
             throw new DataBadRequestException("Тренер указан некорректно указана не корректно");
@@ -46,7 +46,7 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public List<ReviewDto> readAllReviewsDtoBySportGround(Long coachId) {
+    public List<ReviewDto> readAllReviewsDtoByCoachId(Long coachId) {
         return mapper.mapEntityToDto(repository.findAllByCoachId(coachId));
     }
 
@@ -79,12 +79,12 @@ public class ReviewServiceImpl implements ReviewService {
     public Boolean deleteById(Long reviewId, Long coachId, Authentication authentication) {
         if (coachService.existById(coachId) && repository.existsById(reviewId)) {
             if (isAuthorReview(reviewId, authentication) || Roles.hasAuthenticationRoleAdmin(authentication)) {
-                var review = findById(reviewId);
-                repository.deleteById(review.getId());
-                return repository.existsById(review.getId());
+                var review = repository.findById(reviewId);
+                repository.deleteById(reviewId);
+                return repository.existsById(reviewId);
             }
         }
-        throw new DataNotFoundException("Отзыв не найлен");
+        throw new DataNotFoundException("Отзыв не найден");
     }
 
     private Review findById(Long reviewId) {

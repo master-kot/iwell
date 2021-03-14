@@ -18,7 +18,7 @@ import static ru.auheal.helpers.Messages.DATA_NOT_BLANK;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ApiModel(description = "Dto представление сущности Отзыв о тренере")
-public class ReviewDto  {
+public class ReviewDto {
 
     @Positive
     @ApiModelProperty(notes = "Уникальный идентификатор отзыва",
