@@ -37,7 +37,7 @@ public class AccentServiceImpl implements AccentService {
             var accent = accentMapper.mapDtoToEntity(accentDto);
             return accentMapper.mapEntityToDto(accentRepository.save(accent));
         }else {
-            throw new DataBadRequestException(String.format(DATA_WAS_NOT_SAVED));
+            throw new DataBadRequestException(DATA_WAS_NOT_SAVED);
         }
     }
 
@@ -48,7 +48,7 @@ public class AccentServiceImpl implements AccentService {
             accentRepository.save(accent);
             return accentMapper.mapEntityToDto(accent);
         }
-        throw new DataBadRequestException(String.format(DATA_NOT_UPDATED));
+        throw new DataBadRequestException(DATA_NOT_UPDATED);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class AccentServiceImpl implements AccentService {
             accentRepository.deleteById(accentId);
             return accentRepository.existsById(accentId);
         }else {
-            throw new DataBadRequestException(String.format(DATA_WAS_NOT_FOUND_BY_ID));
+            throw new DataBadRequestException(DATA_WAS_NOT_FOUND_BY_ID);
         }
     }
 }

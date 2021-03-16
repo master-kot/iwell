@@ -20,11 +20,6 @@ import java.util.List;
 @ApiModel(description = "Dto представление сущности Тренировка")
 public class TrainingDto {
 
-    //TODO проверить все типы переменных входящих полей и их позиции,
-    // добавить недостающие поля, enum типы привести к String
-    // сложные внутренние типы привести к простым
-    // добавить валидацию полей согласно ограничениям из БД
-
     @Positive
     @ApiModelProperty(notes = "Уникальный идентификатор тренировки",
             dataType = "Long", example = "1", required = true, position = 0)
@@ -47,19 +42,19 @@ public class TrainingDto {
 
     @ApiModelProperty(notes = "Вид спорта",
             dataType = "SportTypeDto",  required = true, position = 4)
-    private SportTypeDto sportTypeDto;
+    private Short sportTypeId;
 
     @ApiModelProperty(notes = "Требуемый уровень клиента",
             dataType = "SportLevelDto",  required = true, position = 5)
-    private SportLevelDto sportLevelDto;
+    private String sportLevel;
 
     @ApiModelProperty(notes = "Требуемый инвентарь для тренировки",
             dataType = "InventoryDto",  required = true, position =6)
-    private List<InventoryDto> inventoryDto;
+    private List<Short> inventoryId;
 
     @ApiModelProperty(notes = "Акцент тренировки (что тренируем)",
             dataType = "SportLevelDto",  required = true, position = 7)
-    private AccentDto accentDto;
+    private Short accentId;
 
     @ApiModelProperty(notes = "Id тренера, проводящего тенировку",
             dataType = "ClientProfile",   required = true, position = 8)
@@ -85,9 +80,9 @@ public class TrainingDto {
 
     @ApiModelProperty(notes = "Абонемент клиента",
             dataType = "SubscriptionDto",   required = true, position = 13)
-    private SubscriptionDto subscriptionDto;
+    private Long subscriptionId;
 
-    @ApiModelProperty(notes = "Количество участников тренировки",
+    @ApiModelProperty(notes = "Закончена ли тренировка",
             dataType = "Boolean", example = "true", required = true, position = 14)
     private Boolean wasCompleted;
 

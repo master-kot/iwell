@@ -28,13 +28,13 @@ public class ReviewRequest  {
     @NotBlank(message = DATA_NOT_BLANK + "Ваше сообщение")
     @ApiModelProperty(notes = "Рейтинг Тренера",
             dataType = "Shotr", example = "1", required = true, position = 1)
-    private Short raiting;
+    private Short rating;
 
     @ApiModelProperty(notes = "Идентификатор тренера",
             dataType = "Long",  required = true, position = 2)
-    private Long coachId;
+    private Long coachProfileId;
 
     @ApiModelProperty(notes = "Идентификатор клиента",
             dataType = "Long",  required = true, position = 3)
-    private Long clientId;
+    private Long clientProfileId;
 }

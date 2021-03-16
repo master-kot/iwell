@@ -4,11 +4,9 @@ package ru.auheal.services.core;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import ru.auheal.dto.AccentDto;
 import ru.auheal.dto.SportTypeDto;
 import ru.auheal.exceptions.DataBadRequestException;
 import ru.auheal.helpers.Roles;
-import ru.auheal.mappers.AccentMapper;
 import ru.auheal.mappers.SportTypeMapper;
 import ru.auheal.repositories.SportTypeRepository;
 import ru.auheal.services.api.SportTypeService;
@@ -39,7 +37,7 @@ public class SportTypeServiceImpl implements SportTypeService {
             var sportType = sportTypeMapper.mapDtoToEntity(sportTypeDto);
             return sportTypeMapper.mapEntityToDto(sportTypeRepository.save(sportType));
         }else {
-            throw new DataBadRequestException(String.format(DATA_WAS_NOT_SAVED));
+            throw new DataBadRequestException(DATA_WAS_NOT_SAVED);
         }
     }
 
@@ -50,7 +48,7 @@ public class SportTypeServiceImpl implements SportTypeService {
             sportTypeRepository.save(sportType);
             return sportTypeMapper.mapEntityToDto(sportType);
         }
-        throw new DataBadRequestException(String.format(DATA_NOT_UPDATED));
+        throw new DataBadRequestException(DATA_NOT_UPDATED);
     }
 
     @Override
@@ -60,7 +58,7 @@ public class SportTypeServiceImpl implements SportTypeService {
             sportTypeRepository.deleteById(sportTypeId);
             return sportTypeRepository.existsById(sportTypeId);
         }else {
-            throw new DataBadRequestException(String.format(DATA_WAS_NOT_FOUND_BY_ID));
+            throw new DataBadRequestException(DATA_WAS_NOT_FOUND_BY_ID);
         }
     }
 }
