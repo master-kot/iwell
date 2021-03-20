@@ -62,21 +62,5 @@ public interface SubscriptionService {
      */
     boolean exist(Long eventId);
 
-    /**
-     * Возвращает тренировки пользователя по аутентификации на определенную дату за определенный интервал времени
-     * @param authentication аунтификационные данные полизователя
-     * @param to дата конца интервала времени
-     * @param from локальная дата
-     */
-    List<TrainingDto> getAllDtoByAuthTimeInterval(Authentication authentication, LocalDate from, LocalDate to);
-
-
-    /**
-     * Сохраняет тренировки пользователя пользователя по аутентификации и за заданный интервал в ремени с заданной даты
-     * @param authentication аунтификационные данные полизователя
-     * @param from дата начала интервала времени, за который показывают мероприятия
-     * @param to дата конца интервала времени
-     */
-    List<TrainingDto> saveAllDtoByAuthFromTo(Authentication authentication, LocalDate from, LocalDate to);
 
 }

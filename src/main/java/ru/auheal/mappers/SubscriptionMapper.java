@@ -3,10 +3,11 @@ package ru.auheal.mappers;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import ru.auheal.dto.SubscriptionDto;
+import ru.auheal.dto.SubscriptionRequest;
 import ru.auheal.entities.Subscription;
-import ru.auheal.entities.Training;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Маппер, преобразующий классы Subscription и SubscriptionDto друг в друга
@@ -18,5 +19,7 @@ public interface SubscriptionMapper {
 
     List<SubscriptionDto> mapEntityToDto(List<Subscription> entities);
 
-    Subscription mapDtoToEntity(SubscriptionDto dto);
+    Subscription mapDtoToEntity(SubscriptionRequest dto);
+
+    SubscriptionDto mapEntityToDto(Optional<Subscription> entity);
 }

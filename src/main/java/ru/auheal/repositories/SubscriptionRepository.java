@@ -9,6 +9,6 @@ import ru.auheal.entities.Subscription;
  * Репозиторий Пакетов тренировок
  */
 @Repository
-public interface SubscriptionRepository extends JpaRepository<Subscription, Short>,
+public interface SubscriptionRepository extends JpaRepository<Subscription, Long>,
         JpaSpecificationExecutor<Subscription> {
 }

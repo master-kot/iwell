@@ -3,8 +3,6 @@ package ru.auheal.services.api;
 import org.springframework.security.core.Authentication;
 import ru.auheal.dto.CategorySubscriptionDto;
 import ru.auheal.dto.CategorySubscriptionRequest;
-import ru.auheal.dto.PasswordRequest;
-import ru.auheal.dto.SubscriptionDto;
 
 import java.util.List;
 
@@ -15,7 +13,7 @@ public interface CategorySubscriptionService {
      * @param id идентификатор категории абонемента
      * @return dto категории абонемента
      */
-    CategorySubscriptionDto getDtoById(Long id);
+    CategorySubscriptionDto getDtoById(Short id);
 
     /**
      * Возвращает все категории абонементов
@@ -32,8 +30,16 @@ public interface CategorySubscriptionService {
      * @return новый абонемент, сохраненное в репозитории
      */
 
-    SubscriptionDto save(CategorySubscriptionRequest categorySubscriptionRequest, Authentication authentication);
+    CategorySubscriptionDto save(CategorySubscriptionRequest categorySubscriptionRequest, Authentication authentication);
 
+    /**
+     * Изменить данные абонемента по его id
+     *  @param categorySubscriptionRequest абонемент с измененными данными
+     * @param categorySubscriptionId индекс абонемента
+     * @param authentication данные авторизации
+     * @return
+     */
+    CategorySubscriptionDto update(CategorySubscriptionRequest categorySubscriptionRequest, Short categorySubscriptionId, Authentication authentication);
 
     /**
      * Удалить абонемента по его идентификатору
@@ -42,12 +48,12 @@ public interface CategorySubscriptionService {
      * @param authentication данные авторизации
      * @return удалено ли мероприятие
      */
-    boolean deleteById(Long id, Authentication authentication);
+    boolean deleteById(Short id, Authentication authentication);
 
     /**
      * Проверяет существует ли сущность.
      * @param categorySubscriptionId идентификатор абонемента
      * @return true/false
      */
-    boolean exist(Long categorySubscriptionId);
+    boolean exist(Short categorySubscriptionId);
 }
