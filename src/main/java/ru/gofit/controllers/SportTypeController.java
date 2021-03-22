@@ -4,7 +4,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,6 @@ import ru.gofit.services.api.SportTypeService;
 import javax.validation.Valid;
 
 @Api(tags = "Виды спорта")
-@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/sport_types")

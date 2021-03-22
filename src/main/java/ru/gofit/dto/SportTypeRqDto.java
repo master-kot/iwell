@@ -10,7 +10,6 @@ import javax.validation.constraints.NotBlank;
 
 import static ru.gofit.helpers.Messages.DATA_NOT_BLANK;
 
-
 @Data
 @Builder
 @NoArgsConstructor

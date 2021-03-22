@@ -16,7 +16,7 @@ public interface SportTypeService {
     Page<SportTypeRsDto> getAll(Pageable pageable);
 
     /**
-     * Найти вида спорта по его идентификатору
+     * Найти вид спорта по его идентификатору
      *
      * @param id идентификатор вида спорта
      * @return вид спорта
