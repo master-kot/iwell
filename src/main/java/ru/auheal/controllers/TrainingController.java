@@ -18,6 +18,8 @@ import java.util.List;
 
 import static ru.auheal.helpers.Messages.DATA_NOT_FOUND;
 import static ru.auheal.helpers.Messages.SUCCESSFUL_REQUEST;
+import static ru.auheal.helpers.Roles.ROLE_ADMIN;
+import static ru.auheal.helpers.Roles.ROLE_USER;
 
 
 @CrossOrigin
@@ -43,5 +45,12 @@ public class TrainingController {
         return ResponseEntity.ok(trainingService.getAllDto());
     }
 
+    //Метод trainingService.getAllDtoByAuth не реализован
 
+    @ApiOperation(value = "Отображает список всех тренировок пользователя")
+    @Secured(value = {ROLE_USER, ROLE_ADMIN})
+    @GetMapping ("/calendar")
+    public ResponseEntity<List<TrainingDto>> readAllEventByAuth(Authentication authentication){
+        return ResponseEntity.ok(trainingService.findAllDtoByAuth(authentication));
+    }
 }

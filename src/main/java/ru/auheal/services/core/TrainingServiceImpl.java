@@ -12,6 +12,7 @@ import ru.auheal.helpers.Roles;
 import ru.auheal.mappers.TrainingMapper;
 import ru.auheal.repositories.TrainingRepository;
 import ru.auheal.services.api.TrainingService;
+import ru.auheal.services.api.UserService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -25,6 +26,7 @@ public class TrainingServiceImpl implements TrainingService {
 
     private final TrainingRepository trainingRepository;
     private final TrainingMapper trainingMapper;
+    private final UserService userService;
 
 
     @Override
@@ -94,12 +96,12 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public List<TrainingDto> findAllEventDtoById(List<Long> idList) {
+    public List<TrainingDto> findAllTrainingDtoById(List<Long> idList) {
         return trainingMapper.mapEntityToDto(trainingRepository.findAllById(idList));
     }
 
     @Override
-    public List<TrainingDto> readAllDtoByAuthFromTo(LocalDate from, LocalDate to, Authentication authentication) {
+    public List<TrainingDto> findAllDtoByAuth(Authentication authentication) {
         return null;
     }
 }

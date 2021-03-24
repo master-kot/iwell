@@ -16,5 +16,4 @@ import java.util.List;
 public interface TrainingRepository  extends JpaRepository<Training, Long>,
         JpaSpecificationExecutor<Training> {
 
-
 }

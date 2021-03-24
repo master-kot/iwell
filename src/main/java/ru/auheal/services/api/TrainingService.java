@@ -88,15 +88,13 @@ public interface TrainingService {
      * @param idList списк идентификаторов
      * @return список тренировок
      */
-    List<TrainingDto> findAllEventDtoById(List<Long> idList);
+    List<TrainingDto> findAllTrainingDtoById(List<Long> idList);
 
 
 
     /**
      * Возвращает тренировки пользователя по аутентификации и за заданный интервал времени с заданной даты
      *
-     * @param from дата начала интервала времени, за который показывают мероприятия
-     * @param to дата конца интервала времени
      */
-    List<TrainingDto> readAllDtoByAuthFromTo( LocalDate from, LocalDate to, Authentication authentication);
+    List<TrainingDto> findAllDtoByAuth( Authentication authentication);
 }
