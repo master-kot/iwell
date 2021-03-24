@@ -27,7 +27,7 @@ public interface TrainingService {
      *
      * @return список dto тренировок
      */
-    List<TrainingDto> readAllDto();
+    List<TrainingDto> getAllDto();
 
 
 

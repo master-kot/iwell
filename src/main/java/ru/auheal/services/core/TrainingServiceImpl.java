@@ -37,7 +37,7 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public List<TrainingDto> readAllDto() {
+    public List<TrainingDto> getAllDto() {
         return trainingMapper.mapEntityToDto(trainingRepository.findAll());
     }
 
