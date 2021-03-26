@@ -13,31 +13,27 @@ import static ru.gofit.helpers.Messages.DATA_NOT_BLANK;
 
 
 /**
- * Dto представление Категория абонемента
+ * Запрос на создание Категории абонемента
  */
 @Data
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-@ApiModel(description = "Dto представление сущности Категория Абонемент")
-public class CategorySubscriptionDto {
+@ApiModel(description = "Запрос на создание Категории абонемента")
+public class CategorySubscriptionRqDto {
 
-    @Positive
-    @ApiModelProperty(notes = "Уникальный идентификатор Абонемента",
-            dataType = "Long", example = "1", required = true, position = 0)
-    private Long subscriptionId;
 
     @Positive
     @ApiModelProperty(notes = "Общее количество тренировок",
-            dataType = "Long", example = "1", required = true, position = 1)
+            dataType = "Long", example = "1", required = true, position = 0)
     private Short initialAmount;
 
     @Positive
     @ApiModelProperty(notes = "Стоимость пакета",
-            dataType = "Long", example = "1", required = true, position = 2)
+            dataType = "Long", example = "1", required = true, position = 1)
     private Integer totalPrice;
 
     @NotBlank(message = DATA_NOT_BLANK + "Продолжительность тренировки")
     @ApiModelProperty(notes = "Продолжительность тренировки",
-            dataType = "Long", example = "1", required = true, position = 3)
+            dataType = "Long", example = "1", required = true, position = 2)
     private String duration;
 }

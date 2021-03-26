@@ -6,22 +6,27 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.List;
 
-
 /**
- * Request запрос на создание сущности Тренировка
+ * Dto представление сущности Тренировка
  */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ApiModel(description = "Dto представление сущности Тренировка")
-public class TrainingRequest {
-    @Size(max=150)
+public class TrainingRsDto {
+
+    @Positive
+    @ApiModelProperty(notes = "Уникальный идентификатор тренировки",
+            dataType = "Long", example = "1", required = true, position = 0)
+    private Long trainingId;
+
     @ApiModelProperty(notes = "Название тренировки",
-            dataType = "String",  example = "Тренировка хатха-йога", required = true, position = 1)
-    private String name;
+            dataType = "String",  example = "тренировка хатха-йога", required = true, position = 1)
+    private String trainingName;
 
     @DateTimeFormat(pattern="HH:mm")
     @ApiModelProperty(notes = "Время начала тренировки",
@@ -34,42 +39,42 @@ public class TrainingRequest {
     private LocalDateTime endDateTime;
 
     @ApiModelProperty(notes = "Вид спорта",
-            dataType = "SportTypeDto",  required = true, position = 4)
-    private Short sportTypeId;
+            dataType = "String",  required = true, position = 4)
+    private String sportType;
 
     @ApiModelProperty(notes = "Требуемый уровень клиента",
-            dataType = "SportLevelDto",  required = true, position = 5)
+            dataType = "SportLevelRsDto",  required = true, position = 5)
     private String sportLevel;
 
     @ApiModelProperty(notes = "Требуемый инвентарь для тренировки",
-            dataType = "InventoryDto",  required = true, position =6)
-    private List<Short> inventoryId;
+            dataType = "String",  required = true, position =6)
+    private List<String> inventories;
 
-    @ApiModelProperty(notes = "Акцент тренировки (что тренируем)",
-            dataType = "SportLevelDto",  required = true, position = 7)
-    private Short accentId;
-
-    @ApiModelProperty(notes = "Id тренера, проводящего тенировку",
-            dataType = "ClientProfile",   required = true, position = 8)
-    private Long couchProfileId;
-
-    @ApiModelProperty(notes = "Id клиента",
-            dataType = "ClientProfile",   required = true, position = 9)
-    private Long clientProfileId;
-
-    @Size(max=150)
-    @ApiModelProperty(notes = "Ссылка на трансляцию",
-            dataType = "String",  example = "https://zoom.us/____", required = true, position = 10)
-    private String videoLink;
+    @ApiModelProperty(notes = "Акцент на который направлено занятие",
+            dataType = "String",  required = true, position = 7)
+    private String accent;
 
     @ApiModelProperty(notes = "Количество участников тренировки",
-            dataType = "Short", example = "2", required = true, position = 11)
+            dataType = "Short", example = "2", required = true, position = 8)
     private Short capacity;
 
     @Size(max=50)
     @ApiModelProperty(notes = "Продолжительность тренировки",
-            dataType = "String",  example = "30 минут", required = true, position = 12)
+            dataType = "String",  example = "30 минут", required = true, position = 9)
     private String duration;
+
+    @ApiModelProperty(notes = "Id тренера, проводящего тенировку",
+            dataType = "ClientProfile",   required = true, position = 10)
+    private Long coachProfileId;
+
+    @ApiModelProperty(notes = "Id клиента",
+            dataType = "ClientProfile",   required = true, position = 11)
+    private Long clientProfileId;
+
+    @Size(max=150)
+    @ApiModelProperty(notes = "Ссылка на трансляцию",
+            dataType = "String",  example = "https://zoom.us/____", required = true, position = 12)
+    private String videoLink;
 
     @ApiModelProperty(notes = "Абонемент клиента",
             dataType = "SubscriptionDto",   required = true, position = 13)

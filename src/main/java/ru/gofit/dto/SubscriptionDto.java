@@ -53,7 +53,7 @@ public class SubscriptionDto {
 
     @ApiModelProperty(notes = "Профиль клиента",
             dataType = "ClientProfile", required = true, position = 4)
-    private ClientProfileDto clientProfileDto;
+    private ClientProfileRsDto clientProfileDto;
 
     @NotBlank(message = DATA_NOT_BLANK + "Список тренировок")
     @ApiModelProperty(notes = "Тренировки, входящие в абонимент",
@@ -62,5 +62,5 @@ public class SubscriptionDto {
 
     @ApiModelProperty(notes = "Категория абонемента",
             dataType = "CategorySubscription", required = true, position = 4)
-    private CategorySubscriptionDto categorySubscriptionDto;
+    private CategorySubscriptionRsDto categorySubscriptionRsDto;
 }

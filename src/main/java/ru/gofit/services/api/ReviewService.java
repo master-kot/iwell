@@ -1,8 +1,8 @@
 package ru.gofit.services.api;
 
 import org.springframework.security.core.Authentication;
-import ru.gofit.dto.ReviewDto;
-import ru.gofit.dto.ReviewRequest;
+import ru.gofit.dto.ReviewRsDto;
+import ru.gofit.dto.ReviewRqDto;
 import ru.gofit.exceptions.DataBadRequestException;
 import ru.gofit.exceptions.DataNotFoundException;
 
@@ -22,17 +22,17 @@ public interface ReviewService {
      * @param coachId идентификатор тренера
      * @exception DataBadRequestException,
      * @exception DataNotFoundException, не найден тренер
-     * @return ReviewDto
+     * @return ReviewRsDto
      */
-    ReviewDto readReviewDtoByIdAndCoachId(Long reviewId, Long coachId);
+    ReviewRsDto readReviewDtoByIdAndCoachId(Long reviewId, Long coachId);
 
     /**
      * Возращает рецензии по идентификатору тренера
      *
      * @param coachId идентификатор тренера
-     * @return List<ReviewDto>
+     * @return List<ReviewRsDto>
      */
-    List<ReviewDto> readAllReviewsDtoByCoachId(Long coachId);
+    List<ReviewRsDto> readAllReviewsDtoByCoachId(Long coachId);
 
     /**
      * Сохраняет новую рецензию
@@ -42,7 +42,7 @@ public interface ReviewService {
      * @exception DataBadRequestException, не найден тренер
      * @return dto новой рецензии
      */
-    ReviewDto saveReview(Long coachId, ReviewRequest request, Authentication authentication);
+    ReviewRsDto saveReview(Long coachId, ReviewRqDto request, Authentication authentication);
 
     /**
      * Обновляет рецензию (текст, имя юзера)
@@ -52,7 +52,7 @@ public interface ReviewService {
      * @exception DataNotFoundException, не получилось найти рецензию
      * @return dto обновлённой рецензии
      */
-    ReviewDto updateReview(Long coachId, ReviewRequest request, Authentication authentication);
+    ReviewRsDto updateReview(Long coachId, ReviewRqDto request, Authentication authentication);
 
     /**
      * Удаление рецензии (только автор рецензии)

@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ApiModel(description = "Dto представление сущности Расписание")
-public class ScheduleDto {
+public class ScheduleRsDto {
 
 
 }

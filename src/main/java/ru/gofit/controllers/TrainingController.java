@@ -7,7 +7,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import ru.gofit.dto.ErrorDto;
-import ru.gofit.dto.TrainingDto;
+import ru.gofit.dto.TrainingRsDto;
 import ru.gofit.services.api.ReviewService;
 import ru.gofit.services.api.SportTypeService;
 import ru.gofit.services.api.TrainingService;
@@ -39,7 +39,7 @@ public class TrainingController {
             @ApiResponse(code = 404, message = DATA_NOT_FOUND, response = ErrorDto.class)
     })
     @GetMapping
-    public ResponseEntity<List<TrainingDto>> readAllEvent() {
+    public ResponseEntity<List<TrainingRsDto>> readAllEvent() {
         return ResponseEntity.ok(trainingService.getAllDto());
     }
 
@@ -48,7 +48,7 @@ public class TrainingController {
     @ApiOperation(value = "Отображает список всех тренировок пользователя")
     @Secured(value = {ROLE_USER, ROLE_ADMIN})
     @GetMapping ("/calendar")
-    public ResponseEntity<List<TrainingDto>> readAllEventByAuth(Authentication authentication){
+    public ResponseEntity<List<TrainingRsDto>> readAllEventByAuth(Authentication authentication){
         return ResponseEntity.ok(trainingService.findAllDtoByAuth(authentication));
     }
 }

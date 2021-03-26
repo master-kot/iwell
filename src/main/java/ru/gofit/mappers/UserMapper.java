@@ -1,23 +1,23 @@
 package ru.gofit.mappers;
 
 import org.mapstruct.*;
-import ru.gofit.dto.UserDto;
-import ru.gofit.dto.UserRequest;
+import ru.gofit.dto.UserRqDto;
+import ru.gofit.dto.UserRsDto;
 import ru.gofit.entities.User;
 import ru.gofit.security.JwtUser;
 
 import java.util.List;
 
 /**
- * Маппер, преобразующий классы User и UserDto друг в друга
+ * Маппер, преобразующий классы User и UserRsDto друг в друга
  */
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE,
         uses = {AuthorityMapper.class, GenderMapper.class})
 public interface UserMapper {
 
-    UserDto mapEntityToDto(User entity);
+    UserRsDto mapEntityToDto(User entity);
 
-    List<UserDto> mapEntityToDto(List<User> entities);
+    List<UserRsDto> mapEntityToDto(List<User> entities);
 
     JwtUser mapEntityToJwt(User entity);
 
@@ -25,7 +25,7 @@ public interface UserMapper {
             @Mapping(target="enabled", constant = "true"),
             @Mapping(target="authorities", ignore = true)
     })
-    User mapDtoToEntity(UserRequest dto);
+    User mapDtoToEntity(UserRqDto dto);
 
     @Mappings({
             @Mapping(target="id", ignore = true),
@@ -34,5 +34,5 @@ public interface UserMapper {
             @Mapping(target="enabled", ignore = true),
             @Mapping(target="authorities", ignore = true),
     })
-    User update(@MappingTarget User entity, UserDto dto);
+    User update(@MappingTarget User entity, UserRsDto dto);
 }

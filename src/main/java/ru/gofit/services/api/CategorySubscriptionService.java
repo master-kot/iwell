@@ -1,8 +1,8 @@
 package ru.gofit.services.api;
 
 import org.springframework.security.core.Authentication;
-import ru.gofit.dto.CategorySubscriptionDto;
-import ru.gofit.dto.CategorySubscriptionRequest;
+import ru.gofit.dto.CategorySubscriptionRqDto;
+import ru.gofit.dto.CategorySubscriptionRsDto;
 
 import java.util.List;
 
@@ -13,33 +13,33 @@ public interface CategorySubscriptionService {
      * @param id идентификатор категории абонемента
      * @return dto категории абонемента
      */
-    CategorySubscriptionDto getDtoById(Short id);
+    CategorySubscriptionRsDto getDtoById(Short id);
 
     /**
      * Возвращает все категории абонементов
      *
      * @return список dto категорий абонементов
      */
-    List<CategorySubscriptionDto> getAllDto();
+    List<CategorySubscriptionRsDto> getAllDto();
 
     /**
      * Создать новую категорию абонемента
      *
-     * @param categorySubscriptionRequest запрос, содержащий данные абонемента
+     * @param categorySubscriptionRqDto запрос, содержащий данные абонемента
      * @param authentication данные авторизации
      * @return новый абонемент, сохраненное в репозитории
      */
 
-    CategorySubscriptionDto save(CategorySubscriptionRequest categorySubscriptionRequest, Authentication authentication);
+    CategorySubscriptionRsDto save(CategorySubscriptionRqDto categorySubscriptionRqDto, Authentication authentication);
 
     /**
      * Изменить данные абонемента по его id
-     *  @param categorySubscriptionRequest абонемент с измененными данными
+     *  @param categorySubscriptionRqDto абонемент с измененными данными
      * @param categorySubscriptionId индекс абонемента
      * @param authentication данные авторизации
      * @return
      */
-    CategorySubscriptionDto update(CategorySubscriptionRequest categorySubscriptionRequest, Short categorySubscriptionId, Authentication authentication);
+    CategorySubscriptionRsDto update(CategorySubscriptionRqDto categorySubscriptionRqDto, Short categorySubscriptionId, Authentication authentication);
 
     /**
      * Удалить абонемента по его идентификатору

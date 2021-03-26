@@ -1,7 +1,7 @@
 package ru.gofit.services.api;
 
 import org.springframework.security.core.Authentication;
-import ru.gofit.dto.AccentDto;
+import ru.gofit.dto.AccentRsDto;
 import ru.gofit.exceptions.DataNotFoundException;
 
 import java.util.List;
@@ -13,37 +13,37 @@ public interface AccentService {
      *
      * @param description название Акцента тренировки
      * @exception DataNotFoundException, Акцент тренировки не найден
-     * @return AccentDto
+     * @return AccentRsDto
      */
-    AccentDto readAccentDtoByDescription(String description);
+    AccentRsDto readAccentDtoByDescription(String description);
 
 
     /**
      * Возращает все Акценты
      *
-     * @return List<ReviewDto>
+     * @return List<ReviewRsDto>
      */
-    List<AccentDto> readAllAccentesDto();
+    List<AccentRsDto> readAllAccentesDto();
 
 
     /**
      * Сохраняет новый Акцент (только Администратор)
      *
      * @param authentication данные авторизации
-     * @param accentDto запрос на создание нового акцента
+     * @param accentRsDto запрос на создание нового акцента
      * @return dto нового акцента
      */
-    AccentDto saveAccent( AccentDto accentDto,  Authentication authentication);
+    AccentRsDto saveAccent(AccentRsDto accentRsDto, Authentication authentication);
 
     /**
      * Обновляет акцент (только Администратор)
      *
-     * @param accentDto запрос на обновление
+     * @param accentRsDto запрос на обновление
      * @param authentication данные авторизации
      * @exception DataNotFoundException, не получилось найти запрашиваемый Акцент
      * @return dto обновленного Акцента
      */
-    AccentDto updateAccent(AccentDto accentDto, Authentication authentication);
+    AccentRsDto updateAccent(AccentRsDto accentRsDto, Authentication authentication);
 
     /**
      * Удаление рецензии (только Администратор)

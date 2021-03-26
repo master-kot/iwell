@@ -3,7 +3,7 @@ package ru.gofit.mappers;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import ru.gofit.dto.SubscriptionDto;
-import ru.gofit.dto.SubscriptionRequest;
+import ru.gofit.dto.SubscriptionRqDto;
 import ru.gofit.entities.Subscription;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public interface SubscriptionMapper {
 
     List<SubscriptionDto> mapEntityToDto(List<Subscription> entities);
 
-    Subscription mapDtoToEntity(SubscriptionRequest dto);
+    Subscription mapDtoToEntity(SubscriptionRqDto dto);
 
     SubscriptionDto mapEntityToDto(Optional<Subscription> entity);
 }

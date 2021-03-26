@@ -16,7 +16,7 @@ import static ru.gofit.helpers.Messages.DATA_NOT_BLANK;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ApiModel(description = "Запрос авторизации")
-public class AuthenticationRequest {
+public class AuthenticationRqDto {
 
     @NotBlank(message = DATA_NOT_BLANK + "Адрес эл. почты")
     @Email

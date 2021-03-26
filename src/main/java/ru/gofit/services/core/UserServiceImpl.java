@@ -8,8 +8,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.gofit.dto.PasswordRequest;
-import ru.gofit.dto.UserDto;
-import ru.gofit.dto.UserRequest;
+import ru.gofit.dto.UserRqDto;
+import ru.gofit.dto.UserRsDto;
 import ru.gofit.entities.User;
 import ru.gofit.exceptions.DataBadRequestException;
 import ru.gofit.exceptions.DataNotFoundException;
@@ -38,12 +38,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final AuthorityRepository authorityRepository;
 
     @Override
-    public UserDto getDtoById(Long id) {
+    public UserRsDto getDtoById(Long id) {
         return userMapper.mapEntityToDto(findById(id));
     }
 
     @Override
-    public UserDto getDtoByAuthentication(Authentication authentication) {
+    public UserRsDto getDtoByAuthentication(Authentication authentication) {
         return userMapper.mapEntityToDto(findById(getUserId(authentication)));
     }
 
@@ -58,25 +58,25 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public List<UserDto> getAllDto() {
+    public List<UserRsDto> getAllDto() {
         return userMapper.mapEntityToDto(userRepository.findAll());
     }
 
     @Override
-    public UserDto save(UserRequest userRequest) {
-        String username = userRequest.getUsername();
+    public UserRsDto save(UserRqDto userRqDto) {
+        String username = userRqDto.getUsername();
         if (userRepository.findByUsername(username).isPresent()) {
             throw new DataBadRequestException(String.format(USER_ALREADY_EXIST, username));
         }
 
-        User newUser = userMapper.mapDtoToEntity(userRequest);
+        User newUser = userMapper.mapDtoToEntity(userRqDto);
             newUser.getAuthorities().add(authorityRepository.findByAuthority(ROLE_USER));
         return userMapper.mapEntityToDto(userRepository.save(newUser));
     }
 
     @Override
-    public UserDto update(UserDto userDto, Authentication authentication) {
-        User user = userMapper.update(findById(getUserId(authentication)), userDto);
+    public UserRsDto update(UserRsDto userRsDto, Authentication authentication) {
+        User user = userMapper.update(findById(getUserId(authentication)), userRsDto);
         return userMapper.mapEntityToDto(userRepository.save(user));
     }
 

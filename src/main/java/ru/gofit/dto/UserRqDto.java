@@ -15,7 +15,7 @@ import static ru.gofit.helpers.Messages.*;
  */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserRequest {
+public class UserRqDto {
 
     @Email
     @Size(min=4, max=50, message = INVALID_USERNAME_LENGTH)

@@ -2,8 +2,8 @@ package ru.gofit.mappers;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
-import ru.gofit.dto.CategorySubscriptionDto;
-import ru.gofit.dto.CategorySubscriptionRequest;
+import ru.gofit.dto.CategorySubscriptionRqDto;
+import ru.gofit.dto.CategorySubscriptionRsDto;
 import ru.gofit.entities.CategorySubscription;
 
 import java.util.List;
@@ -11,17 +11,17 @@ import java.util.Optional;
 
 
 /**
- * Маппер, преобразующий классы CategorySubscription и CategorySubscriptionDto друг в друга
+ * Маппер, преобразующий классы CategorySubscription и CategorySubscriptionRsDto друг в друга
  */
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CategorySubscriptionMapper {
 
-    CategorySubscriptionDto mapEntityToDto(Optional<CategorySubscription> entity);
+    CategorySubscriptionRsDto mapEntityToDto(Optional<CategorySubscription> entity);
 
-    CategorySubscriptionDto mapEntityToDto(CategorySubscription entity);
+    CategorySubscriptionRsDto mapEntityToDto(CategorySubscription entity);
 
-    List<CategorySubscriptionDto> mapEntityToDto(List<CategorySubscription> entities);
+    List<CategorySubscriptionRsDto> mapEntityToDto(List<CategorySubscription> entities);
 
-    CategorySubscription mapDtoToEntity(CategorySubscriptionRequest dto);
+    CategorySubscription mapDtoToEntity(CategorySubscriptionRqDto dto);
 
 }

@@ -16,7 +16,7 @@ import static ru.gofit.helpers.Messages.DATA_NOT_BLANK;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ApiModel(description = "Dto представление сущности Отзыв о тренере")
-public class ReviewRequest  {
+public class ReviewRqDto {
 
     @NotBlank(message = DATA_NOT_BLANK + "Ваше сообщение")
     @Size(max=500)

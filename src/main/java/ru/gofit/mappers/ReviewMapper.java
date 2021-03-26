@@ -4,14 +4,14 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.ReportingPolicy;
-import ru.gofit.dto.ReviewDto;
-import ru.gofit.dto.ReviewRequest;
+import ru.gofit.dto.ReviewRsDto;
+import ru.gofit.dto.ReviewRqDto;
 import ru.gofit.entities.Review;
 
 import java.util.List;
 
 /**
- * Маппер, преобразующий классы Review и ReviewDto друг в друга
+ * Маппер, преобразующий классы Review и ReviewRsDto друг в друга
  */
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE,
         uses = {CoachProfileMapper.class, ClientProfileMapper.class})
@@ -23,9 +23,9 @@ public interface ReviewMapper  {
             @Mapping(target = "coachProfileId", source = "coachProfile.id"),
             @Mapping(target = "clientProfileId", source = "clientProfile.id")
     })
-    ReviewDto mapEntityToDto(Review entity);
+    ReviewRsDto mapEntityToDto(Review entity);
 
-    List<ReviewDto> mapEntityToDto(List<Review> entities);
+    List<ReviewRsDto> mapEntityToDto(List<Review> entities);
 
     @Mappings({
             @Mapping(target = "text", source = "text"),
@@ -33,5 +33,5 @@ public interface ReviewMapper  {
             @Mapping(target = "coachProfile.id", source = "coachProfileId"),
             @Mapping(target = "clientProfile.id", source = "clientProfileId")
     })
-    Review mapDtoToEntity(ReviewRequest dto);
+    Review mapDtoToEntity(ReviewRqDto dto);
 }

@@ -13,12 +13,12 @@ import static ru.gofit.helpers.Messages.DATA_NOT_BLANK;
 
 
 /**
- * Dto представление сущности Профиль клиента
+ * Dto представление сущности Профиль тренера
  */
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-@ApiModel(description = "Dto представление сущности Профиль клиента")
-public class ClientProfileDto {
+@ApiModel(description = "Dto представление сущности Профиль тренера")
+public class CoachProfileRsDto {
 
     @Positive
     @NotBlank(message = DATA_NOT_BLANK)

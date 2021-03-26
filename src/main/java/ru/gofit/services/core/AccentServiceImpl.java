@@ -3,7 +3,7 @@ package ru.gofit.services.core;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import ru.gofit.dto.AccentDto;
+import ru.gofit.dto.AccentRsDto;
 import ru.gofit.mappers.AccentMapper;
 import ru.gofit.exceptions.DataBadRequestException;
 import ru.gofit.helpers.Roles;
@@ -21,20 +21,20 @@ public class AccentServiceImpl implements AccentService {
     private final AccentMapper accentMapper;
 
     @Override
-    public AccentDto readAccentDtoByDescription(String description) {
+    public AccentRsDto readAccentDtoByDescription(String description) {
         return accentMapper.mapEntityToDto(accentRepository.findByDescription(description));
     }
 
     @Override
-    public List<AccentDto> readAllAccentesDto()
+    public List<AccentRsDto> readAllAccentesDto()
     {
         return accentMapper.mapEntityToDto(accentRepository.findAll());
     }
 
     @Override
-    public AccentDto saveAccent(AccentDto accentDto, Authentication authentication) {
+    public AccentRsDto saveAccent(AccentRsDto accentRsDto, Authentication authentication) {
         if (Roles.hasAuthenticationRoleAdmin(authentication)) {
-            var accent = accentMapper.mapDtoToEntity(accentDto);
+            var accent = accentMapper.mapDtoToEntity(accentRsDto);
             return accentMapper.mapEntityToDto(accentRepository.save(accent));
         }else {
             throw new DataBadRequestException(DATA_WAS_NOT_SAVED);
@@ -42,9 +42,9 @@ public class AccentServiceImpl implements AccentService {
     }
 
     @Override
-    public AccentDto updateAccent(AccentDto accentDto, Authentication authentication) {
+    public AccentRsDto updateAccent(AccentRsDto accentRsDto, Authentication authentication) {
         if (Roles.hasAuthenticationRoleAdmin(authentication)){
-            var accent = accentMapper.mapDtoToEntity(accentDto);
+            var accent = accentMapper.mapDtoToEntity(accentRsDto);
             accentRepository.save(accent);
             return accentMapper.mapEntityToDto(accent);
         }

@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import ru.gofit.dto.TrainingDto;
-import ru.gofit.dto.TrainingRequest;
+import ru.gofit.dto.TrainingRqDto;
+import ru.gofit.dto.TrainingRsDto;
 import ru.gofit.entities.Training;
 import ru.gofit.exceptions.DataBadRequestException;
 import ru.gofit.helpers.Roles;
@@ -29,7 +29,7 @@ public class TrainingServiceImpl implements TrainingService {
 
 
     @Override
-    public TrainingDto readDtoByTrainingId(Long trainingId) {
+    public TrainingRsDto readDtoByTrainingId(Long trainingId) {
         if (trainingRepository.findById(trainingId).isPresent()) {
             return trainingMapper.mapEntityToDto(trainingRepository.findById(trainingId));
         }else{
@@ -38,38 +38,38 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public List<TrainingDto> getAllDto() {
+    public List<TrainingRsDto> getAllDto() {
         return trainingMapper.mapEntityToDto(trainingRepository.findAll());
     }
 
 
     @Override
-    public List<TrainingDto> readAllDtoByCoachId(Long coachId, Authentication authentication) {
+    public List<TrainingRsDto> readAllDtoByCoachId(Long coachId, Authentication authentication) {
         return null;
     }
 
     @Override
-    public List<TrainingDto> readAllDtoByClientId(Long clientId, Authentication authentication) {
+    public List<TrainingRsDto> readAllDtoByClientId(Long clientId, Authentication authentication) {
         return null;
     }
 
     @Override
-    public TrainingDto save(TrainingRequest trainingRequest, Authentication authentication) {
+    public TrainingRsDto save(TrainingRqDto trainingRqDto, Authentication authentication) {
         if (Roles.hasAuthenticationRoleAdmin(authentication)) {
             return trainingMapper.mapEntityToDto(trainingRepository
-                    .save(trainingMapper.mapDtoToEntity(trainingRequest)));
+                    .save(trainingMapper.mapDtoToEntity(trainingRqDto)));
         } else {
             throw new AccessDeniedException("У пользователя недостаточно прав доступа");
         }
     }
 
     @Override
-    public TrainingDto update(TrainingRequest trainingRequest, Long trainingId, Authentication authentication) {
+    public TrainingRsDto update(TrainingRqDto trainingRqDto, Long trainingId, Authentication authentication) {
         if (Roles.hasAuthenticationRoleAdmin(authentication)) {
             Optional<Training> training = trainingRepository.findById(trainingId);
-            if(trainingRequest.getName().equals(training.get().getName())) {
+            if(trainingRqDto.getName().equals(training.get().getName())) {
                 return trainingMapper.mapEntityToDto(trainingRepository
-                        .save(trainingMapper.mapDtoToEntity(trainingRequest)));
+                        .save(trainingMapper.mapDtoToEntity(trainingRqDto)));
             }else{
                 throw new DataBadRequestException(String.format(DATA_WAS_NOT_FOUND_BY_ID, trainingId));
             }
@@ -95,12 +95,12 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public List<TrainingDto> findAllTrainingDtoById(List<Long> idList) {
+    public List<TrainingRsDto> findAllTrainingDtoById(List<Long> idList) {
         return trainingMapper.mapEntityToDto(trainingRepository.findAllById(idList));
     }
 
     @Override
-    public List<TrainingDto> findAllDtoByAuth(Authentication authentication) {
+    public List<TrainingRsDto> findAllDtoByAuth(Authentication authentication) {
         return null;
     }
 }

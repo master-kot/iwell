@@ -2,7 +2,7 @@ package ru.gofit.services.api;
 
 import org.springframework.security.core.Authentication;
 import ru.gofit.dto.SubscriptionDto;
-import ru.gofit.dto.SubscriptionRequest;
+import ru.gofit.dto.SubscriptionRqDto;
 
 import java.util.List;
 
@@ -30,20 +30,20 @@ public interface SubscriptionService {
     /**
      * Создать новый абонемент
      *
-     * @param subscriptionRequest запрос, содержащий данные абонемента
+     * @param subscriptionRqDto запрос, содержащий данные абонемента
      * @param authentication данные авторизации
      * @return новый абонемент, сохраненное в репозитории
      */
-    SubscriptionDto save(SubscriptionRequest subscriptionRequest, Authentication authentication);
+    SubscriptionDto save(SubscriptionRqDto subscriptionRqDto, Authentication authentication);
 
     /**
      * Изменить данные абонемента по его id
      *
-     * @param subscriptionRequest абонемент с измененными данными
+     * @param subscriptionRqDto абонемент с измененными данными
      * @param subscriptionId индекс абонемента
      * @param authentication данные авторизации
      */
-    SubscriptionDto update(SubscriptionRequest subscriptionRequest, Long subscriptionId, Authentication authentication);
+    SubscriptionDto update(SubscriptionRqDto subscriptionRqDto, Long subscriptionId, Authentication authentication);
 
     /**
      * Удалить абонемента по его идентификатору

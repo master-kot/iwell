@@ -1,8 +1,8 @@
 package ru.gofit.services.api;
 
 import org.springframework.security.core.Authentication;
-import ru.gofit.dto.TrainingDto;
-import ru.gofit.dto.TrainingRequest;
+import ru.gofit.dto.TrainingRsDto;
+import ru.gofit.dto.TrainingRqDto;
 
 import java.util.List;
 
@@ -18,14 +18,14 @@ public interface TrainingService {
      * @param trainingId идентификатор тренировки
      * @return dto тренировки
      */
-    TrainingDto readDtoByTrainingId(Long trainingId);
+    TrainingRsDto readDtoByTrainingId(Long trainingId);
 
     /**
      * Возвращает все тренировки
      *
      * @return список dto тренировок
      */
-    List<TrainingDto> getAllDto();
+    List<TrainingRsDto> getAllDto();
 
 
 
@@ -35,7 +35,7 @@ public interface TrainingService {
      * @param authentication данные авторизации
      * @return список тренировок
      */
-    List<TrainingDto> readAllDtoByCoachId(Long coachId, Authentication authentication);
+    List<TrainingRsDto> readAllDtoByCoachId(Long coachId, Authentication authentication);
 
 
     /**
@@ -44,25 +44,25 @@ public interface TrainingService {
      * @param authentication данные авторизации
      * @return список тренировок
      */
-    List<TrainingDto> readAllDtoByClientId(Long clientId, Authentication authentication);
+    List<TrainingRsDto> readAllDtoByClientId(Long clientId, Authentication authentication);
 
     /**
      * Создать новую тренировку
      *
-     * @param trainingRequest запрос, содержащий данные тренировки
+     * @param trainingRqDto запрос, содержащий данные тренировки
      * @param authentication данные авторизации
      * @return новое мероприятие, сохраненное в репозитории
      */
-    TrainingDto save(TrainingRequest trainingRequest, Authentication authentication);
+    TrainingRsDto save(TrainingRqDto trainingRqDto, Authentication authentication);
 
     /**
      * Изменить данные мероприятия по его id
      *
-     * @param trainingRequest мероприятие с измененными данными
+     * @param trainingRqDto мероприятие с измененными данными
      * @param trainingId индекс мероприятия
      * @param authentication данные авторизации
      */
-    TrainingDto update(TrainingRequest trainingRequest, Long trainingId, Authentication authentication);
+    TrainingRsDto update(TrainingRqDto trainingRqDto, Long trainingId, Authentication authentication);
 
     /**
      * Удалить тренировку по его идентификатору
@@ -86,7 +86,7 @@ public interface TrainingService {
      * @param idList списк идентификаторов
      * @return список тренировок
      */
-    List<TrainingDto> findAllTrainingDtoById(List<Long> idList);
+    List<TrainingRsDto> findAllTrainingDtoById(List<Long> idList);
 
 
 
@@ -94,5 +94,5 @@ public interface TrainingService {
      * Возвращает тренировки пользователя по аутентификации и за заданный интервал времени с заданной даты
      *
      */
-    List<TrainingDto> findAllDtoByAuth( Authentication authentication);
+    List<TrainingRsDto> findAllDtoByAuth(Authentication authentication);
 }

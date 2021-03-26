@@ -5,8 +5,8 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.gofit.dto.ReviewDto;
-import ru.gofit.dto.ReviewRequest;
+import ru.gofit.dto.ReviewRsDto;
+import ru.gofit.dto.ReviewRqDto;
 import ru.gofit.entities.Review;
 import ru.gofit.exceptions.DataBadRequestException;
 import ru.gofit.exceptions.DataNotFoundException;
@@ -37,7 +37,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 
     @Override
-    public ReviewDto readReviewDtoByIdAndCoachId(Long reviewId, Long coachId) {
+    public ReviewRsDto readReviewDtoByIdAndCoachId(Long reviewId, Long coachId) {
         Review review = findById(reviewId);
         if (!review.getCoachProfile().getId().equals(coachId)) {
             throw new DataBadRequestException("Тренер указан некорректно указана не корректно");
@@ -46,13 +46,13 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public List<ReviewDto> readAllReviewsDtoByCoachId(Long coachId) {
-        return mapper.mapEntityToDto(repository.findAllByCoachId(coachId));
+    public List<ReviewRsDto> readAllReviewsDtoByCoachId(Long coachId) {
+        return mapper.mapEntityToDto(repository.findAllByCoachProfileId(coachId));
     }
 
     @Transactional
     @Override
-    public ReviewDto saveReview(Long coachId, ReviewRequest request, Authentication authentication) {
+    public ReviewRsDto saveReview(Long coachId, ReviewRqDto request, Authentication authentication) {
         if (coachService.existById(coachId) && Roles.hasAuthenticationRoleUser(authentication)) {
             var review = mapper.mapDtoToEntity(request);
             return mapper.mapEntityToDto(repository.save(review));
@@ -62,7 +62,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Transactional
     @Override
-    public ReviewDto updateReview(Long reviewId,  ReviewRequest request, Authentication authentication) {
+    public ReviewRsDto updateReview(Long reviewId, ReviewRqDto request, Authentication authentication) {
         if (repository.existsById(reviewId)&&Roles.hasAuthenticationRoleUser(authentication)) {
             if (isAuthorReview(reviewId, authentication)) {
                 var review = mapper.mapDtoToEntity(request);

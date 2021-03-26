@@ -52,7 +52,7 @@ public class Training {
     @JoinColumn(name = "accent_id")
     private Accent accent;
 
-    // Профиль тренера
+    // Профиль тренера - организатора тренировки
     @ManyToOne
     @JoinColumn(name = "coach_profile_id", nullable = false)
     private CoachProfile coachProfile;

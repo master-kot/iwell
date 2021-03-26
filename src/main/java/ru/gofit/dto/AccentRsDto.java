@@ -13,7 +13,7 @@ import static ru.gofit.helpers.Messages.DATA_NOT_BLANK;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ApiModel(description = "Dto представление сущности Акцент тренировки")
-public class AccentDto {
+public class AccentRsDto {
     @Positive
     @ApiModelProperty(notes = "Уникальный идентификатор Акцента",
             dataType = "Short", example = "1", required = true, position = 0)

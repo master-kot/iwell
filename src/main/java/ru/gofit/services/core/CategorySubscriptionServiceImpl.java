@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import ru.gofit.dto.CategorySubscriptionDto;
-import ru.gofit.dto.CategorySubscriptionRequest;
+import ru.gofit.dto.CategorySubscriptionRsDto;
+import ru.gofit.dto.CategorySubscriptionRqDto;
 import ru.gofit.entities.CategorySubscription;
 import ru.gofit.exceptions.DataBadRequestException;
 import ru.gofit.helpers.Roles;
@@ -27,7 +27,7 @@ public class CategorySubscriptionServiceImpl implements CategorySubscriptionServ
     private final CategorySubscriptionMapper categorySubscriptionMapper;
 
     @Override
-    public CategorySubscriptionDto getDtoById(Short id) {
+    public CategorySubscriptionRsDto getDtoById(Short id) {
         if (categorySubscriptionRepository.findById(id).isPresent()) {
             return categorySubscriptionMapper.mapEntityToDto(categorySubscriptionRepository.findById(id));
         }else{
@@ -36,16 +36,16 @@ public class CategorySubscriptionServiceImpl implements CategorySubscriptionServ
     }
 
     @Override
-    public List<CategorySubscriptionDto> getAllDto() {
+    public List<CategorySubscriptionRsDto> getAllDto() {
         return categorySubscriptionMapper.mapEntityToDto(categorySubscriptionRepository.findAll());
     }
 
     @Override
-    public CategorySubscriptionDto save(CategorySubscriptionRequest categorySubscriptionRequest,
-                                        Authentication authentication) {
+    public CategorySubscriptionRsDto save(CategorySubscriptionRqDto categorySubscriptionRqDto,
+                                          Authentication authentication) {
         if (Roles.hasAuthenticationRoleAdmin(authentication)) {
             return categorySubscriptionMapper.mapEntityToDto(categorySubscriptionRepository
-                    .save(categorySubscriptionMapper.mapDtoToEntity(categorySubscriptionRequest)));
+                    .save(categorySubscriptionMapper.mapDtoToEntity(categorySubscriptionRqDto)));
         } else {
             throw new AccessDeniedException(ACCESS_DENIED);
         }
@@ -53,12 +53,12 @@ public class CategorySubscriptionServiceImpl implements CategorySubscriptionServ
 
     //TODO придумать, как определить метод equals для сущностей и Dto
     @Override
-    public CategorySubscriptionDto update(CategorySubscriptionRequest categorySubscriptionRequest, Short categorySubscriptionId, Authentication authentication) {
+    public CategorySubscriptionRsDto update(CategorySubscriptionRqDto categorySubscriptionRqDto, Short categorySubscriptionId, Authentication authentication) {
         if (Roles.hasAuthenticationRoleAdmin(authentication)) {
             Optional<CategorySubscription> categorySubscription = categorySubscriptionRepository.findById(categorySubscriptionId);
-            if(categorySubscription.get().getInitialAmount().equals(categorySubscriptionRequest.getInitialAmount())) {
+            if(categorySubscription.get().getInitialAmount().equals(categorySubscriptionRqDto.getInitialAmount())) {
                 return categorySubscriptionMapper.mapEntityToDto(categorySubscriptionRepository
-                        .save(categorySubscriptionMapper.mapDtoToEntity(categorySubscriptionRequest)));
+                        .save(categorySubscriptionMapper.mapDtoToEntity(categorySubscriptionRqDto)));
             }else{
                 throw new DataBadRequestException(String.format(DATA_WAS_NOT_FOUND_BY_ID, categorySubscription));
             }

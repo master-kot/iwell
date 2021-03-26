@@ -21,7 +21,7 @@ import static ru.gofit.helpers.Messages.DATA_NOT_BLANK;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ApiModel(description = "Запрос на создание пакета тренировок")
-public class SubscriptionRequest {
+public class SubscriptionRqDto {
 
     @NotBlank(message = DATA_NOT_BLANK + "Дата начала действия абонемента")
     @DateTimeFormat(pattern = "yyyy.MM.dd")
