@@ -11,5 +11,4 @@ import ru.gofit.entities.Subscription;
 @Repository
 public interface SubscriptionRepository extends JpaRepository<Subscription, Long>,
         JpaSpecificationExecutor<Subscription> {
-
 }

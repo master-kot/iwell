@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import ru.gofit.dto.SportTypeRqDto;
 import ru.gofit.dto.SportTypeRsDto;
+import ru.gofit.exceptions.DataNotFoundException;
 
 public interface SportTypeService {
 
@@ -46,4 +47,13 @@ public interface SportTypeService {
      * @param id идентификатор вида спорта
      */
     void deleteById(Short id);
+
+    /**
+     * Возращает Вид спорта тренировки по её имени
+     *
+     * @param description название Вида спорта тренировки
+     * @exception DataNotFoundException, Вида спорта тренировки не найден
+     * @return AccentRsDto
+     */
+    SportTypeRsDto readSportTypeDtoByDescription(String description);
 }

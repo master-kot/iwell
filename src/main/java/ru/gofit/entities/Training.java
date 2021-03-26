@@ -29,11 +29,11 @@ public class Training {
     @Column(name = "name", length = 50)
     private String name;
 
-    // Время начала мероприятия
+    // Время начала тренировки
     @Column(name = "start_date_time", nullable = false)
     private LocalDateTime startDateTime;
 
-    // Время завершения мероприятия
+    // Время завершения тренировки
     @Column(name = "end_date_time")
     private LocalDateTime endDateTime;
 
@@ -52,7 +52,7 @@ public class Training {
     @JoinColumn(name = "accent_id")
     private Accent accent;
 
-    // Профиль тренера
+    // Профиль тренера - организатора тренировки
     @ManyToOne
     @JoinColumn(name = "coach_profile_id", nullable = false)
     private CoachProfile coachProfile;

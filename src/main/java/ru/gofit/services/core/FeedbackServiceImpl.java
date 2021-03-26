@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import ru.gofit.dto.FeedbackDto;
-import ru.gofit.dto.FeedbackRequest;
+import ru.gofit.dto.FeedbackRsDto;
+import ru.gofit.dto.FeedbackRqDto;
 import ru.gofit.entities.Feedback;
 import ru.gofit.exceptions.DataNotFoundException;
 import ru.gofit.mappers.FeedbackMapper;
@@ -32,13 +32,13 @@ public class FeedbackServiceImpl implements FeedbackService {
     private final FeedbackMapper feedbackMapper;
 
     @Override
-    public FeedbackDto getDtoById(Long id) {
+    public FeedbackRsDto getDtoById(Long id) {
         return feedbackMapper.mapEntityToDto(feedbackRepository.findById(id).orElseThrow(
                 () -> new DataNotFoundException(String.format(USER_NOT_FOUND_BY_ID, id))));
     }
 
     @Override
-    public List<FeedbackDto> getAllDto(Authentication authentication) {
+    public List<FeedbackRsDto> getAllDto(Authentication authentication) {
         if (authentication != null && hasAuthenticationRoleAdmin(authentication)) {
             return feedbackMapper.mapEntityToDto(feedbackRepository.findAll());
         } else {
@@ -47,8 +47,8 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
-    public FeedbackDto save(FeedbackRequest feedbackRequest) {
-        Feedback feedback = feedbackMapper.mapDtoToEntity(feedbackRequest);
+    public FeedbackRsDto save(FeedbackRqDto feedbackRqDto) {
+        Feedback feedback = feedbackMapper.mapDtoToEntity(feedbackRqDto);
         return feedbackMapper.mapEntityToDto(feedbackRepository.save(feedback));
     }
 

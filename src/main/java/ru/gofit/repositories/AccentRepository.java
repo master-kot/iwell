@@ -9,5 +9,5 @@ import ru.gofit.entities.Accent;
  */
 @Repository
 public interface AccentRepository extends JpaRepository<Accent, Short>{
-
+    Accent findByDescription(String description);
 }

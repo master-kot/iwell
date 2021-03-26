@@ -14,8 +14,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
-import ru.gofit.dto.AuthenticationDto;
-import ru.gofit.dto.AuthenticationRequest;
+import ru.gofit.dto.AuthenticationRsDto;
+import ru.gofit.dto.AuthenticationRqDto;
 import ru.gofit.dto.ErrorDto;
 import ru.gofit.security.JwtTokenProvider;
 import ru.gofit.security.JwtUser;
@@ -45,7 +45,7 @@ public class AuthenticationController {
             @ApiResponse(code = 200, message = SUCCESSFUL_REQUEST),
             @ApiResponse(code = 400, message = BAD_REQUEST, response = ErrorDto.class)
     })
-    public ResponseEntity<AuthenticationDto> login(@Valid @RequestBody AuthenticationRequest requestDto) {
+    public ResponseEntity<AuthenticationRsDto> login(@Valid @RequestBody AuthenticationRqDto requestDto) {
         try {
             String username = requestDto.getEmail();
             authenticationManager.authenticate(
@@ -59,7 +59,7 @@ public class AuthenticationController {
             String token = jwtTokenProvider.createToken(username, user.getId(),
                     user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()));
 
-            return ResponseEntity.ok(new AuthenticationDto(token));
+            return ResponseEntity.ok(new AuthenticationRsDto(token));
         } catch (AuthenticationException e) {
             log.debug(e);
             throw new BadCredentialsException(BAD_CREDENTIALS);

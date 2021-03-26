@@ -11,7 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import ru.gofit.dto.ErrorDto;
 import ru.gofit.dto.PasswordRequest;
-import ru.gofit.dto.UserDto;
+import ru.gofit.dto.UserRsDto;
 import ru.gofit.services.api.UserService;
 
 import javax.validation.Valid;
@@ -44,7 +44,7 @@ public class UserController {
             @ApiResponse(code = 403, message = ACCESS_DENIED, response = ErrorDto.class),
             @ApiResponse(code = 404, message = DATA_NOT_FOUND, response = ErrorDto.class)
     })
-    public ResponseEntity<UserDto> readUser(Authentication authentication) {
+    public ResponseEntity<UserRsDto> readUser(Authentication authentication) {
         return ResponseEntity.ok(userService.getDtoByAuthentication(authentication));
     }
 
@@ -57,9 +57,9 @@ public class UserController {
             @ApiResponse(code = 403, message = ACCESS_DENIED, response = ErrorDto.class),
             @ApiResponse(code = 404, message = DATA_NOT_FOUND, response = ErrorDto.class)
     })
-    public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto,
-                                              Authentication authentication) {
-        return ResponseEntity.ok(userService.update(userDto, authentication));
+    public ResponseEntity<UserRsDto> updateUser(@Valid @RequestBody UserRsDto userRsDto,
+                                                Authentication authentication) {
+        return ResponseEntity.ok(userService.update(userRsDto, authentication));
     }
 
     @Secured(value = {ROLE_USER, ROLE_ADMIN})
@@ -71,7 +71,7 @@ public class UserController {
             @ApiResponse(code = 403, message = ACCESS_DENIED, response = ErrorDto.class),
             @ApiResponse(code = 404, message = DATA_NOT_FOUND, response = ErrorDto.class)
     })
-    public ResponseEntity<UserDto> readUserById(@Valid @PathVariable Long id) {
+    public ResponseEntity<UserRsDto> readUserById(@Valid @PathVariable Long id) {
         return ResponseEntity.ok(userService.getDtoById(id));
     }
 

@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ApiModel(description = "Dto представление Данных авторизации")
-public class AuthenticationDto {
+public class AuthenticationRsDto {
 
     private final String token;
 }

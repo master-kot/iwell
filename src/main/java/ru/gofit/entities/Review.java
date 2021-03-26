@@ -19,7 +19,7 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
-    private Integer id;
+    private Long id;
 
     // Текст отзыва
     @Column(name = "text", nullable = false, length = 500)

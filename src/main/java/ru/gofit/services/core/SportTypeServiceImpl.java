@@ -64,4 +64,9 @@ public class SportTypeServiceImpl implements SportTypeService {
                         }
                 );
     }
+
+    @Override
+    public SportTypeRsDto readSportTypeDtoByDescription(String description) {
+        return sportTypeMapper.mapEntityToDto(sportTypeRepository.findByDescription(description));
+    }
 }

@@ -9,5 +9,5 @@ import ru.gofit.entities.SportType;
  */
 @Repository
 public interface SportTypeRepository extends JpaRepository<SportType, Short> {
-
+    SportType findByDescription(String description);
 }

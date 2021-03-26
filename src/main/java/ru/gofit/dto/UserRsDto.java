@@ -20,7 +20,7 @@ import static ru.gofit.helpers.Messages.INVALID_USERNAME_LENGTH;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ApiModel(description = "Dto представление сущности Пользователь")
-public class UserDto {
+public class UserRsDto {
 
     //TODO проверить все типы переменных входящих полей и их позиции,
     // добавить недостающие поля, enum типы привести к String
@@ -47,7 +47,7 @@ public class UserDto {
     @NotBlank(message = DATA_NOT_BLANK + "Фамилия")
     @ApiModelProperty(notes = "Фамилия Пользователя",
             dataType = "String", example = "Иванов", required = true, position = 3)
-    private String  lastnameName;
+    private String  lastName;
 
     @NotBlank(message = DATA_NOT_BLANK + "Адрес пользователя")
     @ApiModelProperty(notes = "Адрес пользователя",

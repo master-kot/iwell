@@ -2,8 +2,8 @@ package ru.gofit.services.api;
 
 import org.springframework.security.core.Authentication;
 import ru.gofit.dto.PasswordRequest;
-import ru.gofit.dto.UserDto;
-import ru.gofit.dto.UserRequest;
+import ru.gofit.dto.UserRqDto;
+import ru.gofit.dto.UserRsDto;
 import ru.gofit.security.JwtUser;
 
 import java.util.List;
@@ -16,16 +16,16 @@ public interface UserService {
     /*
      * СОГЛАШЕНИЕ О НАИМЕНОВАНИИ МЕТОДОВ СЕРВИСОВ
      * User getById(Long id) найти объект по параметру
-     * UserDto getDtoById(Long id) найти Dto объект по параметру
+     * UserRsDto getDtoById(Long id) найти Dto объект по параметру
      * List<User> getAll() найти все объекты
-     * List<UserDto> getAllDto() найти все Dto объекты
-     * List<UserDto> getAllDtoByObject(ObjectDto objectDto) найти все Dto объекты по параметру
-     * UserDto update(UserDto userDto) изменить объект
-     * UserDto save(UserDto userDto) сохранить объект
-     * List<UserDto> saveAll(List<UserDto> userDtoList) сохранить список объектов
-     * void delete(UserDto userDto) удалить конкретный объект
+     * List<UserRsDto> getAllDto() найти все Dto объекты
+     * List<UserRsDto> getAllDtoByObject(ObjectDto objectDto) найти все Dto объекты по параметру
+     * UserRsDto update(UserRsDto userDto) изменить объект
+     * UserRsDto save(UserRsDto userDto) сохранить объект
+     * List<UserRsDto> saveAll(List<UserRsDto> userDtoList) сохранить список объектов
+     * void delete(UserRsDto userDto) удалить конкретный объект
      * void deleteById(Long id) удалить объект по параметру
-     * void deleteAll(List<UserDto> userDtoList) удалить список объектов
+     * void deleteAll(List<UserRsDto> userDtoList) удалить список объектов
      *
      * ДОПОЛНИТЕЛЬНЫЕ ПОЛОЖЕНИЯ
      * 1. JavaDoc создается:
@@ -41,7 +41,7 @@ public interface UserService {
      * @param id идентификатор пользователя
      * @return пользователь
      */
-    UserDto getDtoById(Long id);
+    UserRsDto getDtoById(Long id);
 
     /**
      * Найти пользователя по данным авторизации
@@ -49,7 +49,7 @@ public interface UserService {
      * @param authentication данные авторизации
      * @return пользователь
      */
-    UserDto getDtoByAuthentication(Authentication authentication);
+    UserRsDto getDtoByAuthentication(Authentication authentication);
 
     /**
      * Найти Jwt пользователя
@@ -72,23 +72,23 @@ public interface UserService {
      *
      * @return список пользователей
      */
-    List<UserDto> getAllDto();
+    List<UserRsDto> getAllDto();
 
     /**
      * Создать нового пользователя
      *
-     * @param userRequest запрос с данными пользователя
+     * @param userRqDto запрос с данными пользователя
      * @return новый пользователь, сохраненный в репозитории
      */
-    UserDto save(UserRequest userRequest);
+    UserRsDto save(UserRqDto userRqDto);
 
     /**
      * Изменить данные пользователя
      *
-     * @param userDto пользователь с измененными данными
+     * @param userRsDto пользователь с измененными данными
      * @param authentication данные авторизации
      */
-    UserDto update(UserDto userDto, Authentication authentication);
+    UserRsDto update(UserRsDto userRsDto, Authentication authentication);
 
     /**
      * Удалить пользователя по его идентификатору
