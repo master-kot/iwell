@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Сущность Профиль тренера
@@ -23,13 +24,12 @@ public class CoachProfile {
     private Long id;
 
     // Пользователь, которому соответствует данный профиль
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @OneToOne(optional = false, mappedBy = "coachProfile", cascade = CascadeType.ALL)
     private User user;
 
     // Короткая информация о себе
     @Column(name = "coach_info", length = 500)
-    private String userInfo;
+    private String coachInfo;
 
     // Спортивные достижения
     @Column(name = "sports_achivments", length = 150)
@@ -38,10 +38,6 @@ public class CoachProfile {
     // Спортивный разряд
     @Column(name = "sports_grade", length = 150)
     private String sportsGrade;
-
-    // Список тренировок
-    @OneToMany(mappedBy = "coachProfile")
-    private List<Training> trainings;
 
     // Количество завершенных тренировок
     @Column(name = "training_amount", nullable = false)
@@ -55,16 +51,20 @@ public class CoachProfile {
     @Column(name = "money_amount", nullable = false)
     private Integer moneyAmount;
 
+    // Список тренировок
+    @OneToMany(mappedBy = "coachProfile", cascade = CascadeType.ALL)
+    private List<Training> trainings;
+
     // Отзывы о тренере
-    @OneToMany(mappedBy = "coachProfile")
+    @OneToMany(mappedBy = "coachProfile", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
     // Список входящих денежных операций (приход денег за тренировку)
-    @OneToMany(mappedBy = "coachProfile")
+    @OneToMany(mappedBy = "coachProfile", cascade = CascadeType.ALL)
     private List<IncomeCoachTransaction> incomeCoachTransactions;
 
     // Список исходящих денежных операций (вывод денег)
-    @OneToMany(mappedBy = "coachProfile")
+    @OneToMany(mappedBy = "coachProfile", cascade = CascadeType.ALL)
     private List<OutcomeCoachTransaction> outcomeCoachTransactions;
 
     // Виды спорта
@@ -73,5 +73,5 @@ public class CoachProfile {
             name = "coach_sport_types",
             joinColumns = @JoinColumn(name = "coach_profile_id"),
             inverseJoinColumns = @JoinColumn(name = "sport_type_id"))
-    private List<SportType> sportTypes;
+    private Set<SportType> sportTypes;
 }

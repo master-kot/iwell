@@ -3,6 +3,7 @@ package ru.gofit.entities;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.gofit.enums.Duration;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -31,6 +32,10 @@ public class Subscription {
     @Column(name = "end_date_time")
     private LocalDateTime endDateTime;
 
+    // Общее количество тренировок
+    @Column(name = "initial_amount", nullable = false)
+    private Short initialAmount;
+
     // Оставшееся количество тренировок
     @Column(name = "remaining_amount", nullable = false)
     private Short remainingAmount;
@@ -45,6 +50,6 @@ public class Subscription {
     private CategorySubscription categorySubscription;
 
     // Список тренировок, прошедших по данному пакету
-    @OneToMany(mappedBy = "subscription")
+    @OneToMany(mappedBy = "subscription", cascade = CascadeType.ALL)
     private List<Training> trainings;
 }
